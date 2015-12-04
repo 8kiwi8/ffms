@@ -29,36 +29,34 @@ public class BookingDAO {
     
     public List<Booking> getAllBooking() {
         String query = "SELECT * FROM booking, user, space WHERE "
-                + "user.uid=uid AND space.sid = sid";
+                + "user.uid=booking.uid AND space.sid = booking.sid";
         ResultSet rs = null;
         List<Booking> bookings = new ArrayList<Booking>();
         try {
             connection = JDBCUtil.getConnection();
             statement = connection.createStatement();
             rs = statement.executeQuery(query);
-            if (rs.next()) {
+            while (rs.next()) {
                 User user = new User();
-                user.setUid(rs.getLong("uid"));
-                user.setName(rs.getString("name"));
-                user.setPassword(rs.getString("password"));
-                user.setType(rs.getString("type"));
+                user.setUid(rs.getLong("user.uid"));
+                user.setName(rs.getString("user.name"));
+                user.setPassword(rs.getString("user.password"));
+                user.setType(rs.getString("user.type"));
                 Space space = new Space();
-                space.setSid(rs.getLong("sid"));
-                space.setName(rs.getString("name"));
-                space.setDescription(rs.getString("description"));
-                space.setPicPath(rs.getString("picPath"));
+                space.setSid(rs.getLong("space.sid"));
+                space.setName(rs.getString("space.name"));
+                space.setDescription(rs.getString("space.description"));
+                space.setPicPath(rs.getString("space.picPath"));
                 Booking booking = new Booking();
                 booking.setBid(rs.getLong("bid"));
-                booking.setSid(rs.getLong("sid"));
+                booking.setSid(rs.getLong("space.sid"));
                 booking.setSpace(space);
-                booking.setUid(rs.getLong("uid"));
+                booking.setUid(rs.getLong("user.uid"));
                 booking.setUser(user);
-                String start = rs.getString("start");
-                String end = rs.getString("end");
-                Date startDate = new Date(start);
-                Date endDate = new Date(end);
-                booking.setStart(startDate);
-                booking.setEnd(endDate);
+                Date start = new Date(rs.getTimestamp("start").getTime());
+                Date end = new Date(rs.getTimestamp("end").getTime());
+                booking.setStart(start);
+                booking.setEnd(end);
                 booking.setRemark(rs.getString("remark"));
                 bookings.add(booking);
             }
@@ -81,36 +79,34 @@ public class BookingDAO {
     
     public List<Booking> getUserBooking(Long uid) {
         String query = "SELECT * FROM booking, user, space WHERE "
-                + "user.uid=uid AND space.sid = sid AND uid="+uid;
+                + "user.uid=booking.uid AND space.sid = booking.sid AND uid="+uid;
         ResultSet rs = null;
         List<Booking> bookings = new ArrayList<Booking>();
         try {
             connection = JDBCUtil.getConnection();
             statement = connection.createStatement();
             rs = statement.executeQuery(query);
-            if (rs.next()) {
+            while (rs.next()) {
                 User user = new User();
-                user.setUid(rs.getLong("uid"));
-                user.setName(rs.getString("name"));
-                user.setPassword(rs.getString("password"));
-                user.setType(rs.getString("type"));
+                user.setUid(rs.getLong("user.uid"));
+                user.setName(rs.getString("user.name"));
+                user.setPassword(rs.getString("user.password"));
+                user.setType(rs.getString("user.type"));
                 Space space = new Space();
-                space.setSid(rs.getLong("sid"));
-                space.setName(rs.getString("name"));
-                space.setDescription(rs.getString("description"));
-                space.setPicPath(rs.getString("picPath"));
+                space.setSid(rs.getLong("space.sid"));
+                space.setName(rs.getString("space.name"));
+                space.setDescription(rs.getString("space.description"));
+                space.setPicPath(rs.getString("space.picPath"));
                 Booking booking = new Booking();
                 booking.setBid(rs.getLong("bid"));
-                booking.setSid(rs.getLong("sid"));
+                booking.setSid(rs.getLong("space.sid"));
                 booking.setSpace(space);
-                booking.setUid(rs.getLong("uid"));
+                booking.setUid(rs.getLong("user.uid"));
                 booking.setUser(user);
-                String start = rs.getString("start");
-                String end = rs.getString("end");
-                Date startDate = new Date(start);
-                Date endDate = new Date(end);
-                booking.setStart(startDate);
-                booking.setEnd(endDate);
+                Date start = new Date(rs.getTimestamp("start").getTime());
+                Date end = new Date(rs.getTimestamp("end").getTime());
+                booking.setStart(start);
+                booking.setEnd(end);
                 booking.setRemark(rs.getString("remark"));
                 bookings.add(booking);
             }
@@ -133,36 +129,34 @@ public class BookingDAO {
     
     public List<Booking> getSpaceBooking(Long sid) {
         String query = "SELECT * FROM booking, user, space WHERE "
-                + "user.uid=uid AND space.sid = sid AND sid="+sid;
+                + "user.uid=booking.uid AND space.sid = booking.sid AND sid="+sid;
         ResultSet rs = null;
         List<Booking> bookings = new ArrayList<Booking>();
         try {
             connection = JDBCUtil.getConnection();
             statement = connection.createStatement();
             rs = statement.executeQuery(query);
-            if (rs.next()) {
+            while (rs.next()) {
                 User user = new User();
-                user.setUid(rs.getLong("uid"));
-                user.setName(rs.getString("name"));
-                user.setPassword(rs.getString("password"));
-                user.setType(rs.getString("type"));
+                user.setUid(rs.getLong("user.uid"));
+                user.setName(rs.getString("user.name"));
+                user.setPassword(rs.getString("user.password"));
+                user.setType(rs.getString("user.type"));
                 Space space = new Space();
-                space.setSid(rs.getLong("sid"));
-                space.setName(rs.getString("name"));
-                space.setDescription(rs.getString("description"));
-                space.setPicPath(rs.getString("picPath"));
+                space.setSid(rs.getLong("space.sid"));
+                space.setName(rs.getString("space.name"));
+                space.setDescription(rs.getString("space.description"));
+                space.setPicPath(rs.getString("space.picPath"));
                 Booking booking = new Booking();
                 booking.setBid(rs.getLong("bid"));
-                booking.setSid(rs.getLong("sid"));
+                booking.setSid(rs.getLong("space.sid"));
                 booking.setSpace(space);
-                booking.setUid(rs.getLong("uid"));
+                booking.setUid(rs.getLong("user.uid"));
                 booking.setUser(user);
-                String start = rs.getString("start");
-                String end = rs.getString("end");
-                Date startDate = new Date(start);
-                Date endDate = new Date(end);
-                booking.setStart(startDate);
-                booking.setEnd(endDate);
+                Date start = new Date(rs.getTimestamp("start").getTime());
+                Date end = new Date(rs.getTimestamp("end").getTime());
+                booking.setStart(start);
+                booking.setEnd(end);
                 booking.setRemark(rs.getString("remark"));
                 bookings.add(booking);
             }
@@ -194,27 +188,24 @@ public class BookingDAO {
             rs = statement.executeQuery(query);
             if (rs.next()) {
                 User user = new User();
-                user.setUid(rs.getLong("uid"));
-                user.setName(rs.getString("name"));
-                user.setPassword(rs.getString("password"));
-                user.setType(rs.getString("type"));
+                user.setUid(rs.getLong("user.uid"));
+                user.setName(rs.getString("user.name"));
+                user.setPassword(rs.getString("user.password"));
+                user.setType(rs.getString("user.type"));
                 Space space = new Space();
-                space.setSid(rs.getLong("sid"));
-                space.setName(rs.getString("name"));
-                space.setDescription(rs.getString("description"));
-                space.setPicPath(rs.getString("picPath"));
-                booking = new Booking();
+                space.setSid(rs.getLong("space.sid"));
+                space.setName(rs.getString("space.name"));
+                space.setDescription(rs.getString("space.description"));
+                space.setPicPath(rs.getString("space.picPath"));
                 booking.setBid(rs.getLong("bid"));
-                booking.setSid(rs.getLong("sid"));
+                booking.setSid(rs.getLong("space.sid"));
                 booking.setSpace(space);
-                booking.setUid(rs.getLong("uid"));
+                booking.setUid(rs.getLong("user.uid"));
                 booking.setUser(user);
-                String start = rs.getString("start");
-                String end = rs.getString("end");
-                Date startDate = new Date(start);
-                Date endDate = new Date(end);
-                booking.setStart(startDate);
-                booking.setEnd(endDate);
+                Date start = new Date(rs.getTimestamp("start").getTime());
+                Date end = new Date(rs.getTimestamp("end").getTime());
+                booking.setStart(start);
+                booking.setEnd(end);
                 booking.setRemark(rs.getString("remark"));
             }
         } catch (SQLException ex) {

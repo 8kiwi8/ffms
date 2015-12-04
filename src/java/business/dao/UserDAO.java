@@ -34,7 +34,7 @@ public class UserDAO {
             connection = JDBCUtil.getConnection();
             statement = connection.createStatement();
             rs = statement.executeQuery(query);
-            if (rs.next()) {
+            while (rs.next()) {
                 User user = new User();
                 user.setUid(rs.getLong("uid"));
                 user.setName(rs.getString("name"));

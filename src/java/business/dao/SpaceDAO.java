@@ -32,7 +32,7 @@ public class SpaceDAO {
             connection = JDBCUtil.getConnection();
             statement = connection.createStatement();
             rs = statement.executeQuery(query);
-            if (rs.next()) {
+            while (rs.next()) {
                 Space space = new Space();
                 space.setSid(rs.getLong("sid"));
                 space.setName(rs.getString("name"));
