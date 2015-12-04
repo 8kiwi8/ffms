@@ -35,20 +35,14 @@ public class ListUser extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            //State which url should the data post to
             RequestDispatcher rd = request.getRequestDispatcher("/user/listUser.jsp");;
+            //DAO is used to fetch data from database
             UserDAO userDAO = new UserDAO();
+            //Put the list of data as an attribute to be posted
             request.setAttribute("users", userDAO.getAllUser());
+            //Post everything to the web page
             rd.forward(request, response);
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ListUserDispatcher</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ListUserDispatcher at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 
