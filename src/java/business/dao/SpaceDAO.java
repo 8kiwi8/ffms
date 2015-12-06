@@ -112,4 +112,73 @@ public class SpaceDAO {
             JDBCUtil.close(connection);
         }
     }
+    
+    public Space updateSpace(long sid) 
+    {
+        String query = "SELECT * FROM user WHERE sid=" + sid;
+        String query1 = "UPDATE space SET name=?, description=?, picPath=? WHERE sid=" + sid;
+        ResultSet rs = null;
+        Space space = null;
+        try
+        {
+            connection = JDBCUtil.getConnection();
+            statement = connection.createStatement();
+            rs = statement.executeQuery(query);
+            if (rs.next())
+            {
+                space = new Space ();
+                ptmt = connection.prepareStatement(query1);
+                ptmt.setString(1, space.getName());
+                ptmt.setString(2, space.getDescription());
+                ptmt.setString(3, space.getPicPath());
+                ptmt.executeUpdate();
+            } 
+        }
+        catch (SQLException ex) 
+        {
+             while (ex != null) 
+             {
+                System.out.println ("SQLState: " + ex.getSQLState ());
+                System.out.println ("Message:  " + ex.getMessage ());
+                System.out.println ("Vendor:   " + ex.getErrorCode ());
+                ex = ex.getNextException();
+                System.out.println ("");
+            }
+            System.out.println("Connection to the database error");
+        } 
+        finally 
+        {
+            JDBCUtil.close(ptmt);
+            JDBCUtil.close(connection);
+        }
+        return space;
+    }
+    
+    public void deleteSpace(long sid) 
+    {
+        try 
+        {
+            connection = JDBCUtil.getConnection();
+            String query = "DELETE FROM space WHERE uid=" + sid;
+            ptmt = connection.prepareStatement(query);
+            ptmt.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+             while (ex != null) 
+             {
+                System.out.println ("SQLState: " + ex.getSQLState ());
+                System.out.println ("Message:  " + ex.getMessage ());
+                System.out.println ("Vendor:   " + ex.getErrorCode ());
+                ex = ex.getNextException();
+                System.out.println ("");
+            }
+            System.out.println("Connection to the database error");
+        }
+        finally 
+        {
+            JDBCUtil.close(ptmt);
+            JDBCUtil.close(connection);
+        }
+    }
 }

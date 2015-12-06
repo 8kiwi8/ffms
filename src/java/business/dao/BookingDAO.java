@@ -250,4 +250,74 @@ public class BookingDAO {
             JDBCUtil.close(connection);
         }
     }
+    
+    public Booking updateBooking(long bid) 
+    {
+        String query = "SELECT * FROM booking, user, space WHERE " + "uid=user.uid AND sid=space.sid AND bid=" + bid;
+        String query1 = "UPDATE booking SET start=?, end=?, remark=? WHERE bid=" + bid;
+        ResultSet rs = null;
+        Booking booking = null;
+        try 
+        {
+            connection = JDBCUtil.getConnection();
+            statement = connection.createStatement();
+            rs = statement.executeQuery(query);
+            if (rs.next()) 
+            {
+                booking = new Booking ();
+                ptmt = connection.prepareStatement(query1);
+                ptmt.setTimestamp(1, new java.sql.Timestamp(booking.getStart().getTime()));
+                ptmt.setTimestamp(2, new java.sql.Timestamp(booking.getEnd().getTime()));
+                ptmt.setString(3, booking.getRemark());
+                ptmt.executeUpdate();
+            }
+        } 
+        catch (SQLException ex) 
+        {
+             while (ex != null) 
+             {
+                System.out.println ("SQLState: " + ex.getSQLState ());
+                System.out.println ("Message:  " + ex.getMessage ());
+                System.out.println ("Vendor:   " + ex.getErrorCode ());
+                ex = ex.getNextException();
+                System.out.println ("");
+            }
+            System.out.println("Connection to the database error");
+        } 
+        finally 
+        {
+            JDBCUtil.close(rs);
+            JDBCUtil.close(statement);
+            JDBCUtil.close(connection);
+        }
+        return booking;
+    }
+    
+    public void deleteBooking(long bid) 
+    {
+        try 
+        {
+            connection = JDBCUtil.getConnection();
+            String query = "DELETE FROM booking WHERE bid=" + bid;
+            ptmt = connection.prepareStatement(query);
+            ptmt.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+             while (ex != null) 
+             {
+                System.out.println ("SQLState: " + ex.getSQLState ());
+                System.out.println ("Message:  " + ex.getMessage ());
+                System.out.println ("Vendor:   " + ex.getErrorCode ());
+                ex = ex.getNextException();
+                System.out.println ("");
+            }
+            System.out.println("Connection to the database error");
+        }
+        finally 
+        {
+            JDBCUtil.close(ptmt);
+            JDBCUtil.close(connection);
+        }
+    }
 }
