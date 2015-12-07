@@ -2,7 +2,7 @@
 
 body {
 	/* background-color: #031A3F; */
-    background-image: url("/img/background.png")
+    background-image: url("../img/background.png")
 }
 
 .banner {
