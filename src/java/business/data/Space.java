@@ -14,13 +14,15 @@ public class Space {
     String name;
     String description;
     String picPath;
+    double price;
     
     public Space() {}
 
-    public Space(String name, String description, String picPath) {
+    public Space(String name, String description, String picPath, double price) {
         this.name = name;
         this.description = description;
         this.picPath = picPath;
+        this.price = price;
     }
     
     
@@ -56,4 +58,13 @@ public class Space {
         this.picPath = picPath;
     }
     
+    public double getPrice ()
+    {
+        return price;
+    }
+    
+    public void setPrice (double price)
+    {
+        this.price = price;
+    }
 }

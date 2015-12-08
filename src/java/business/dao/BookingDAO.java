@@ -47,17 +47,20 @@ public class BookingDAO {
                 space.setName(rs.getString("space.name"));
                 space.setDescription(rs.getString("space.description"));
                 space.setPicPath(rs.getString("space.picPath"));
+                space.setPrice(rs.getDouble("space.price"));
                 Booking booking = new Booking();
                 booking.setBid(rs.getLong("bid"));
                 booking.setSid(rs.getLong("space.sid"));
                 booking.setSpace(space);
                 booking.setUid(rs.getLong("user.uid"));
                 booking.setUser(user);
+                booking.setPrice(rs.getDouble("booking.price"));
                 Date start = new Date(rs.getTimestamp("start").getTime());
                 Date end = new Date(rs.getTimestamp("end").getTime());
                 booking.setStart(start);
                 booking.setEnd(end);
                 booking.setRemark(rs.getString("remark"));
+                booking.setStatus (rs.getString ("status"));
                 bookings.add(booking);
             }
         } catch (SQLException ex) {
@@ -97,17 +100,20 @@ public class BookingDAO {
                 space.setName(rs.getString("space.name"));
                 space.setDescription(rs.getString("space.description"));
                 space.setPicPath(rs.getString("space.picPath"));
+                space.setPrice (rs.getDouble("price"));
                 Booking booking = new Booking();
                 booking.setBid(rs.getLong("bid"));
                 booking.setSid(rs.getLong("space.sid"));
                 booking.setSpace(space);
                 booking.setUid(rs.getLong("user.uid"));
                 booking.setUser(user);
+                booking.setPrice (rs.getDouble("price"));
                 Date start = new Date(rs.getTimestamp("start").getTime());
                 Date end = new Date(rs.getTimestamp("end").getTime());
                 booking.setStart(start);
                 booking.setEnd(end);
                 booking.setRemark(rs.getString("remark"));
+                booking.setStatus(rs.getString("status"));
                 bookings.add(booking);
             }
         } catch (SQLException ex) {
@@ -147,17 +153,20 @@ public class BookingDAO {
                 space.setName(rs.getString("space.name"));
                 space.setDescription(rs.getString("space.description"));
                 space.setPicPath(rs.getString("space.picPath"));
+                space.setPrice (rs.getDouble("space.price"));
                 Booking booking = new Booking();
                 booking.setBid(rs.getLong("bid"));
                 booking.setSid(rs.getLong("space.sid"));
                 booking.setSpace(space);
                 booking.setUid(rs.getLong("user.uid"));
                 booking.setUser(user);
+                booking.setPrice (rs.getDouble ("price"));
                 Date start = new Date(rs.getTimestamp("start").getTime());
                 Date end = new Date(rs.getTimestamp("end").getTime());
                 booking.setStart(start);
                 booking.setEnd(end);
                 booking.setRemark(rs.getString("remark"));
+                booking.setStatus(rs.getString("status"));
                 bookings.add(booking);
             }
         } catch (SQLException ex) {
@@ -197,16 +206,19 @@ public class BookingDAO {
                 space.setName(rs.getString("space.name"));
                 space.setDescription(rs.getString("space.description"));
                 space.setPicPath(rs.getString("space.picPath"));
+                space.setPrice (rs.getDouble("space.price"));
                 booking.setBid(rs.getLong("bid"));
                 booking.setSid(rs.getLong("space.sid"));
                 booking.setSpace(space);
                 booking.setUid(rs.getLong("user.uid"));
                 booking.setUser(user);
+                booking.setPrice(rs.getDouble("booking.price"));
                 Date start = new Date(rs.getTimestamp("start").getTime());
                 Date end = new Date(rs.getTimestamp("end").getTime());
                 booking.setStart(start);
                 booking.setEnd(end);
                 booking.setRemark(rs.getString("remark"));
+                booking.setStatus (rs.getString ("status"));
             }
         } catch (SQLException ex) {
              while (ex != null) {
@@ -228,13 +240,15 @@ public class BookingDAO {
     public void newBooking(Booking booking) {
         try {
             connection = JDBCUtil.getConnection();
-            String query = "INSERT INTO booking(uid, sid, start, end, remark) VALUES(?,?,?,?,?)";
+            String query = "INSERT INTO booking(uid, sid, price, start, end, remark, status) VALUES(?,?,?,?,?,?,?)";
             ptmt = connection.prepareStatement(query);
             ptmt.setLong(1, booking.getUid());
             ptmt.setLong(2, booking.getSid());
-            ptmt.setTimestamp(3, new java.sql.Timestamp(booking.getStart().getTime()));
-            ptmt.setTimestamp(4, new java.sql.Timestamp(booking.getEnd().getTime()));
-            ptmt.setString(5, booking.getRemark());
+            ptmt.setDouble(3, booking.getPrice());
+            ptmt.setTimestamp(4, new java.sql.Timestamp(booking.getStart().getTime()));
+            ptmt.setTimestamp(5, new java.sql.Timestamp(booking.getEnd().getTime()));
+            ptmt.setString(6, booking.getRemark());
+            ptmt.setString (7, booking.getStatus());
             ptmt.executeUpdate();
         } catch (SQLException ex) {
              while (ex != null) {
@@ -254,7 +268,7 @@ public class BookingDAO {
     public Booking updateBooking(long bid) 
     {
         String query = "SELECT * FROM booking, user, space WHERE " + "uid=user.uid AND sid=space.sid AND bid=" + bid;
-        String query1 = "UPDATE booking SET start=?, end=?, remark=? WHERE bid=" + bid;
+        String query1 = "UPDATE booking SET price=?, start=?, end=?, remark=?, status=? WHERE bid=" + bid;
         ResultSet rs = null;
         Booking booking = null;
         try 
@@ -266,9 +280,11 @@ public class BookingDAO {
             {
                 booking = new Booking ();
                 ptmt = connection.prepareStatement(query1);
-                ptmt.setTimestamp(1, new java.sql.Timestamp(booking.getStart().getTime()));
-                ptmt.setTimestamp(2, new java.sql.Timestamp(booking.getEnd().getTime()));
-                ptmt.setString(3, booking.getRemark());
+                ptmt.setDouble (1, booking.getPrice());
+                ptmt.setTimestamp(2, new java.sql.Timestamp(booking.getStart().getTime()));
+                ptmt.setTimestamp(3, new java.sql.Timestamp(booking.getEnd().getTime()));
+                ptmt.setString(4, booking.getRemark());
+                ptmt.setString (5, booking.getStatus());
                 ptmt.executeUpdate();
             }
         } 
