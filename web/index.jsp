@@ -37,7 +37,7 @@
 				<div class="collapse navbar-collapse" id="navbar-collapse-main">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-						<li><a href="#">Courts</a></li>
+						<li><a href="${context}/courts.jsp">Courts</a></li>
 						<li><a href="#">Price</a></li>
 					</ul>
 					
