@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2015 at 08:47 AM
+-- Generation Time: Dec 08, 2015 at 04:02 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -30,9 +30,11 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `bid` int(25) NOT NULL AUTO_INCREMENT,
   `uid` int(25) NOT NULL,
   `sid` int(25) NOT NULL,
+  `price` double NOT NULL,
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
   `remark` text NOT NULL,
+  `status` varchar(20) NOT NULL,
   PRIMARY KEY (`bid`),
   KEY `fk_sid` (`sid`),
   KEY `fk_uid` (`uid`)
@@ -49,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `space` (
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `picPath` text NOT NULL,
+  `price` double NOT NULL,
   PRIMARY KEY (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
