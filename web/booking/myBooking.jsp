@@ -1,7 +1,7 @@
 <%-- 
-    Document   : listUser
-    Created on : Dec 3, 2015, 8:43:01 PM
-    Author     : kingw
+    Document   : listBooking
+    Created on : Dec 8, 2015, 8:23:09 PM
+    Author     : amier
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -47,10 +47,10 @@
 				
 				<div class="collapse navbar-collapse" id="navbar-collapse-main">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+						<li ><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
 						<li><a href="#">Courts</a></li>
-						<li><a href="listUser.jsp">Member</a></li>
-						<li><a href="listBooking.jsp">Transactions</a></li>
+						<li class="active"><a href="mybooking.html">My Booking</a></li>
+						<li><a href="transaction.html">Transactions</a></li>
 					</ul>
 					
 					<ul class="nav navbar-nav navbar-right">
@@ -66,13 +66,16 @@
                     				<form method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/LoginServlet">	
                     				<div class="modal-body">
                     					<div class="form-group">
-                            				<label for="exampleInputEmail1">Email address</label>
-                           					 <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                         				 </div>
+							  					  <label for="inputEmail" class="control-label">Email</label>
+							   						 <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+							  			   		  <div class="help-block with-errors"></div>
+							  				</div>
                          				 <div class="form-group">
-                           					 <label for="exampleInputPassword1">Password</label>
-                           					 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                         				 </div>
+						   					 	<label for="inputPassword" class="control-label">Password</label>
+						   			          <div >
+						     					 <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+						     					 <span class="help-block">Minimum of 6 characters</span>
+						    			      </div></div>
                     				</div>
                     				<div class="modal-footer">
 
@@ -91,26 +94,34 @@
 			
 			
 
-				<!-- Table List of User Transaction -->
+				<!-- Table User Transaction -->
 				
             <div class="row">
             	<div class="col-xs-3"></div>
                 <div class="table-responsive col-xs-6" >
-                	<h4> List of Member </h4>
+                	<h4> My Booking </h4>
                     <table class="table table-bordered">
-                    	
-                        <tr> 
-                    		<td> User </td>
-                    		<td> Email </td>
-                    	        <td> Remove user</td>
-                    	    
+                    	<tr> 
+                    		<td>Booking Date</td>
+                                <td>Booked Space</td>
+                                <td>Booker</td>
+                                <td>Start Time</td>
+                                <td>End Time</td>
+                                <td>Price </td>
+                                <td>Remark</td>
+                                <td> Confirmation</td>
                     		
                     	</tr>
-                        <c:forEach items="${users}" var="user">
+                    	<c:forEach items="${bookings}" var="booking">
                     	<tr> 
-                    		<!-- take data from database user name -->
-                     		<td> ${user.name}</td>
-                    		<td> ${user.email} </td>   		
+                    		
+                                <td>${booking.date}</td>
+                                <td>${booking.space.name}</td>
+                                <td>${booking.user.name}</td>
+                                <td>${booking.start}</td>
+                                <td>${booking.end}</td>
+                                <td>${booking.price}</td>
+                                <td>${booking.remark}</td>
                     		<td> <button type="button" class="btn btn-default"> Delete </button> </td>
                     	</tr>
                         </c:forEach>

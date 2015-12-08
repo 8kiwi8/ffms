@@ -1,12 +1,12 @@
 <%-- 
-    Document   : listUser
-    Created on : Dec 3, 2015, 8:43:01 PM
-    Author     : kingw
+    Document   : register
+    Created on : Dec 8, 2015, 07:46:36 PM
+    Author     : amier
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!doctype html>
 <html lang="en">
 	<head>
 		<title>FutsalNow - Futsal. Everyday.</title>
@@ -15,7 +15,6 @@
 		<link href="../css/bootstrap.min.css" rel="stylesheet">
 		<link href="../css/bootstrap-theme.min.css" rel="stylesheet">
 		<link href="../css/style.css" rel="stylesheet">
-		<link href="../bootstrap-switch.css" rel="stylesheet">
 	</head>
 	
 	<body>
@@ -23,8 +22,6 @@
 		<script src="../js/bootstrap.min.js"></script>
 		<script src="../js/validator.js"></script>
 		<script src="../js/validator.min.js"></script>
-		<script src="../js/bootstrap-switch.js"></script>
-		<script src="../js/jquery.js"></script>
 		
 		<div class="container" id="banner">
 			<img src="${pageContext.request.contextPath}/img/banner.png" alt="Banner" style="width:100%;">
@@ -47,15 +44,14 @@
 				
 				<div class="collapse navbar-collapse" id="navbar-collapse-main">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+						<li ><a href="index.jsp">Home <span class="sr-only">(current)</span></a></li>
 						<li><a href="#">Courts</a></li>
-						<li><a href="listUser.jsp">Member</a></li>
-						<li><a href="listBooking.jsp">Transactions</a></li>
+						<li><a href="../booking/myBooking.jsp">My Booking</a></li>
 					</ul>
 					
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-														<a> <span class="glyphicon glyphicon-user" style="padding-right:10px;" ></span>
+							<a> <span class="glyphicon glyphicon-user" style="padding-right:10px;" ></span>
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal">Login</button>
 								<div class="modal fade" id="mymodal">
 									<div class="modal-dialog">
@@ -63,7 +59,7 @@
                    						 	<h3> Login </h3>
 
                     					</div>
-                    				<form method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/LoginServlet">	
+                    				<form>	
                     				<div class="modal-body">
                     					<div class="form-group">
                             				<label for="exampleInputEmail1">Email address</label>
@@ -76,14 +72,15 @@
                     				</div>
                     				<div class="modal-footer">
 
-                                     <a class="btn btn-default" href="register.html" role="button">SignUp</a>
+                                                 <a class="btn btn-default" href="register.html" role="button">SignUp</a>
                       				 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                      				 <button type="submit" class="btn btn-default">Submit</button>
                      				</div>
-                     			    </form>
+                     			        </form>
 
 
 							</a>
+
 						</li>
 					</ul>
 				</div>
@@ -91,32 +88,34 @@
 			
 			
 
-				<!-- Table List of User Transaction -->
+				<!-- Table user edit profile -->
 				
             <div class="row">
             	<div class="col-xs-3"></div>
                 <div class="table-responsive col-xs-6" >
-                	<h4> List of Member </h4>
-                    <table class="table table-bordered">
-                    	
-                        <tr> 
-                    		<td> User </td>
-                    		<td> Email </td>
-                    	        <td> Remove user</td>
-                    	    
-                    		
-                    	</tr>
-                        <c:forEach items="${users}" var="user">
-                    	<tr> 
-                    		<!-- take data from database user name -->
-                     		<td> ${user.name}</td>
-                    		<td> ${user.email} </td>   		
-                    		<td> <button type="button" class="btn btn-default"> Delete </button> </td>
-                    	</tr>
-                        </c:forEach>
-
-    
-                    </table>
+                	<form data-toggle="validator" role="form">   <!--TO DO Connect To UpdateUserProfileServlet And Variables2-->
+				 <div class="form-group">
+				    <label for="inputName" class="control-label">Name</label>
+				   	 <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required>
+				 </div>
+				 <div class="form-group">
+				    <label for="inputEmail" class="control-label">Email</label>
+				         <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+				             <div class="help-block with-errors"></div>
+					     </div>
+                                 <div class="form-group">
+				         <label for="inputPassword" class="control-label">Password</label>
+					     <div >
+						<input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+						     <span class="help-block">Minimum of 6 characters</span>
+					     </div>
+						 <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+						   <div class="help-block with-errors"></div>
+				</div>
+			        <div>
+			            <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+			</form>
 			    </div>
 			    <div class="col-xs-3"></div>
 			</div>

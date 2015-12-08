@@ -26,6 +26,8 @@
 	<body>
 		<script src="${context}/js/jquery.min.js"></script>
 		<script src="${context}/js/bootstrap.min.js"></script>
+                <script src="${context}/js/validator.js"></script>
+		<script src="${context}/js/validator.min.js"></script>
 		
 		<div class="container" id="banner">
 			<img src="${context}/img/banner.png" alt="Banner" style="width:100%;">
@@ -63,7 +65,38 @@
 
                                 <ul class="nav navbar-nav navbar-right">
                                     <li>
-                                        <a href="#"><span class="glyphicon glyphicon-user" style="padding-right:10px;"></span>Login</a>
+                                        <a> <span class="glyphicon glyphicon-user" style="padding-right:10px;" ></span>
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal">Login</button>
+								<div class="modal fade" id="mymodal">
+									<div class="modal-dialog">
+                   						 <div class="modal-header">
+                   						 	<h3> Login </h3>
+
+                    					</div>
+                    				<form data-toggle="validator" role="form" method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/LoginServlet">	
+                    				<div class="modal-body">
+                    					<div class="form-group">
+						          <label for="inputEmail" class="control-label">Email</label>
+							   <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+							  <div class="help-block with-errors"></div>
+						        </div>
+                         			        <div class="form-group">
+						   	   <label for="inputPassword" class="control-label">Password</label>
+						   	        <div >
+						                 <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+						                 <span class="help-block">Minimum of 6 characters</span>
+						        </div></div>
+                    				</div>
+                    				<div class="modal-footer">
+
+                                                    <a> <class="btn btn-default" href="register.html" role="button">SignUp</a>
+                      				 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     				 <button type="submit" class="btn btn-default">Submit</button>
+                     				</div>
+                     			    </form>
+
+
+							</a>
                                     </li>
                                 </ul>
                             </div>
