@@ -15,27 +15,33 @@ public class Booking {
     long uid;
     long sid;
     long bid;
+    double price;
     Date start;
     Date end;
     String remark;
+    String status;
     
     User user;
     Space space;
     
     public Booking() {}
 
-    public Booking(long uid, long sid, Date start, Date end, String remark) {
+    public Booking(long uid, long sid, double price, Date start, Date end, String remark, String status) {
         this.uid = uid;
         this.sid = sid;
+        this.price = price;
         this.start = start;
         this.end = end;
         this.remark = remark;
+        this.status = status;
     }
 
-    public Booking(Date start, Date end, String remark, User user, Space space) {
+    public Booking(double price, Date start, Date end, String remark, String status, User user, Space space) {
+        this.price = price;
         this.start = start;
         this.end = end;
         this.remark = remark;
+        this.status = status;
         this.user = user;
         this.space = space;
         this.uid = user.getUid();
@@ -66,7 +72,17 @@ public class Booking {
     public void setBid(long bid) {
         this.bid = bid;
     }
-
+    
+    public double getPrice ()
+    {
+        return price;
+    }
+    
+    public void setPrice (double price)
+    {
+        this.price = price;
+    }
+    
     public Date getStart() {
         return start;
     }
@@ -90,7 +106,17 @@ public class Booking {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-
+    
+    public String getStatus ()
+    {
+        return status;
+    }
+    
+    public void setStatus (String status)
+    {
+        this.status = status;
+    }
+    
     public User getUser() {
         return user;
     }
@@ -106,5 +132,4 @@ public class Booking {
     public void setSpace(Space space) {
         this.space = space;
     }
-    
 }
