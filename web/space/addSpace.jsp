@@ -100,7 +100,7 @@
 				   	 <input type="text" class="form-control" id="inputName" placeholder="Grass court" required>
 				 </div>
                                  <div class="form-group">
-				    <label for="inputName" class="control-label">Description</label>
+				    <label for="inputName" class="control-label">Descriptions</label>
 				   	 <input type="textarea" class="form-control" id="inputName" placeholder="Size, further details, condition" required>
 				 </div>
                                  <div class="form-group">
