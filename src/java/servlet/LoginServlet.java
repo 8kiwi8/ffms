@@ -9,11 +9,14 @@ import business.dao.UserDAO;
 import business.data.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -22,42 +25,48 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession(true);
+            
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
+            
+            String username = request.getParameter("inputEmail");
+            String password = request.getParameter("inputPassword");
             
             UserDAO userDAO = new UserDAO();
+            out.println("test");
             User user = userDAO.getUser(username);
             
+               
             String result = "";
-            if(user == null) {
-                result = "No User Found!";
-            } else if(!password.equals(user.getPassword())) {
-                result = "Password not match!";
+            
+            if(user == null || !password.equals(user.getPassword())) {
+                
+                response.sendRedirect("login.jsp");
+            
             } else {
-                result = "Logged In";
+                Cookie uType = new Cookie("type", user.getName());
+                // setting cookie to expiry in 1 mins
+                uType.setMaxAge(1 * 60);
+                response.addCookie(uType);
+
+                session.setAttribute("name", user.getName());
+                session.setAttribute("type", user.getType());
+                String type = (String) session.getAttribute("type");
+                if(type.equalsIgnoreCase("1")){
+                response.sendRedirect("adminIndex.html");
+                }
+                else{
+                response.sendRedirect("index.jsp");
+                
+                }
+                
             }
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>"+result+"</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
         }
     }
 
