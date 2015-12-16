@@ -41,6 +41,7 @@ public class UserDAO {
                 user.setName(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setType(rs.getString("type"));
+                user.setStatus (rs.getString("status"));
                 users.add(user);
             }
         } catch (SQLException ex) {
@@ -75,6 +76,7 @@ public class UserDAO {
                 user.setName(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setType(rs.getString("type"));
+                user.setStatus (rs.getString("status"));
             }
         } catch (SQLException ex) {
              while (ex != null) {
@@ -108,6 +110,7 @@ public class UserDAO {
                 user.setName(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setType(rs.getString("type"));
+                user.setStatus (rs.getString("status"));
             }
         } catch (SQLException ex) {
              while (ex != null) {
@@ -129,12 +132,13 @@ public class UserDAO {
     public void addUser(User user) {
         try {
             connection = JDBCUtil.getConnection();
-            String query = "INSERT INTO user(name, username, password, type) VALUES(?,?,?,?)";
+            String query = "INSERT INTO user(name, username, password, type, status) VALUES(?,?,?,?,?)";
             ptmt = connection.prepareStatement(query);
             ptmt.setString(1, user.getName());
             ptmt.setString(2, user.getUsername());
             ptmt.setString(3, user.getPassword());
             ptmt.setString(4, user.getType());
+            ptmt.setString(5, user.getStatus());
             ptmt.executeUpdate();
         } catch (SQLException ex) {
              while (ex != null) {
@@ -154,7 +158,7 @@ public class UserDAO {
         public User updateUser(int uid) 
         {
         String query = "SELECT * FROM user WHERE uid=" + uid;
-        String query1 = "UPDATE user SET name=?, username=?, password=?, type=? WHERE uid=" + uid;
+        String query1 = "UPDATE user SET name=?, username=?, password=?, type=?, status=? WHERE uid=" + uid;
         ResultSet rs = null;
         User user = null;
         try 
@@ -170,6 +174,7 @@ public class UserDAO {
                 ptmt.setString(2, user.getUsername());
                 ptmt.setString(3, user.getPassword());
                 ptmt.setString(4, user.getType());
+                ptmt.setString(5, user.getStatus());
                 ptmt.executeUpdate();
             }
         } 
