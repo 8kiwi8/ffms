@@ -45,14 +45,15 @@ public class AddBookingServlet extends HttpServlet {
             long uid = Long.parseLong(request.getParameter("uid"));
             long sid = Long.parseLong(request.getParameter("sid"));
             String remark = request.getParameter("remark");
-            
+            String status = request.getParameter("status");
+            double price = Double.parseDouble(request.getParameter("price"));
             String start = request.getParameter("start");
             String end = request.getParameter("end");
             DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy,HH");
             Date bstart = formatter.parse(start);
             Date bend = formatter.parse(end);
             
-            Booking booking = new Booking(uid, sid, bstart, bend, remark);
+            Booking booking = new Booking(uid, sid, price, bstart, bend, remark, status);
             BookingDAO bookingDAO = new BookingDAO();
             bookingDAO.newBooking(booking);
             

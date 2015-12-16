@@ -39,8 +39,9 @@ public class AddSpaceServlet extends HttpServlet {
             String name = request.getParameter("name");
             String description = request.getParameter("description");
             String picPath = request.getParameter("picPath");
-            
-            Space space = new Space(name, description, picPath);
+            double price = 0;
+            String status = null;
+            Space space = new Space(name, description, picPath, price, status);
             SpaceDAO spaceDAO = new SpaceDAO();
             spaceDAO.addSpace(space);
             
