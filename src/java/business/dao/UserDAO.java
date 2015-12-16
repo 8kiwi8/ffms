@@ -7,6 +7,7 @@ package business.dao;
 
 import business.data.User;
 import common.JDBCUtil;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +25,10 @@ public class UserDAO {
     private Statement statement;
     private PreparedStatement ptmt;
     
-    public UserDAO() { }
+    public UserDAO() {
+            
+        
+    }
     
     public List<User> getAllUser() {
         String query = "SELECT * FROM user";
@@ -61,9 +65,12 @@ public class UserDAO {
     }
     
     public User getUser(String username) {
-        String query = "SELECT * FROM user WHERE username=\"" + username + "\"";
-        ResultSet rs = null;
+        
+        String query = "SELECT * FROM user WHERE username='"+username+"'";
+        ResultSet rs;
+        rs = null;
         User user = null;
+        
         try {
             connection = JDBCUtil.getConnection();
             statement = connection.createStatement();
@@ -72,7 +79,7 @@ public class UserDAO {
                 user = new User();
                 user.setUid(rs.getLong("uid"));
                 user.setName(rs.getString("name"));
-                user.setName(rs.getString("username"));
+                user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setType(rs.getString("type"));
             }
@@ -105,7 +112,7 @@ public class UserDAO {
                 user = new User();
                 user.setUid(rs.getLong("uid"));
                 user.setName(rs.getString("name"));
-                user.setName(rs.getString("username"));
+                user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setType(rs.getString("type"));
             }
