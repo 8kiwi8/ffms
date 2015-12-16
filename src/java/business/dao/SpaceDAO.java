@@ -39,6 +39,7 @@ public class SpaceDAO {
                 space.setDescription(rs.getString("description"));
                 space.setPicPath(rs.getString("picPath"));
                 space.setPrice (rs.getDouble ("price"));
+                space.setStatus (rs.getString("status"));
                 spaces.add(space);
             }
         } catch (SQLException ex) {
@@ -73,6 +74,7 @@ public class SpaceDAO {
                 space.setDescription(rs.getString("description"));
                 space.setPicPath(rs.getString("picPath"));
                 space.setPrice(rs.getDouble("price"));
+                space.setStatus(rs.getString("status"));
             }
         } catch (SQLException ex) {
              while (ex != null) {
@@ -94,12 +96,13 @@ public class SpaceDAO {
     public void addSpace(Space space) {
         try {
             connection = JDBCUtil.getConnection();
-            String query = "INSERT INTO space(name, description, picPath, price) VALUES(?,?,?,?)";
+            String query = "INSERT INTO space(name, description, picPath, price, status) VALUES(?,?,?,?,?)";
             ptmt = connection.prepareStatement(query);
             ptmt.setString(1, space.getName());
             ptmt.setString(2, space.getDescription());
             ptmt.setString(3, space.getPicPath());
             ptmt.setDouble(4, space.getPrice());
+            ptmt.setString(5, space.getStatus());
             ptmt.executeUpdate();
         } catch (SQLException ex) {
              while (ex != null) {
@@ -119,7 +122,7 @@ public class SpaceDAO {
     public Space updateSpace(long sid) 
     {
         String query = "SELECT * FROM user WHERE sid=" + sid;
-        String query1 = "UPDATE space SET name=?, description=?, picPath=?, price=? WHERE sid=" + sid;
+        String query1 = "UPDATE space SET name=?, description=?, picPath=?, price=?, status=? WHERE sid=" + sid;
         ResultSet rs = null;
         Space space = null;
         try
@@ -135,6 +138,7 @@ public class SpaceDAO {
                 ptmt.setString(2, space.getDescription());
                 ptmt.setString(3, space.getPicPath());
                 ptmt.setDouble(4, space.getPrice());
+                ptmt.setString(5, space.getStatus());
                 ptmt.executeUpdate();
             } 
         }

@@ -15,14 +15,16 @@ public class Space {
     String description;
     String picPath;
     double price;
+    String status;
     
     public Space() {}
 
-    public Space(String name, String description, String picPath, double price) {
+    public Space(String name, String description, String picPath, double price, String status) {
         this.name = name;
         this.description = description;
         this.picPath = picPath;
         this.price = price;
+        this.status = status;
     }
     
     
@@ -66,5 +68,15 @@ public class Space {
     public void setPrice (double price)
     {
         this.price = price;
+    }
+    
+    public void setStatus (String status)
+    {
+        this.status = status;
+    }
+    
+    public String getStatus ()
+    {
+        return status;
     }
 }
