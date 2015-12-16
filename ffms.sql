@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2015 at 04:02 PM
+-- Generation Time: Dec 16, 2015 at 05:50 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `space` (
   `description` text NOT NULL,
   `picPath` text NOT NULL,
   `price` double NOT NULL,
+  `status` varchar(20) NOT NULL,
   PRIMARY KEY (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -67,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `type` varchar(20) NOT NULL,
+  `status` varchar(20) NOT NULL,
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -84,3 +86,4 @@ ALTER TABLE `booking`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+uuserseruseruseruseruser

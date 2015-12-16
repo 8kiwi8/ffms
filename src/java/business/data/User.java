@@ -15,14 +15,16 @@ public class User {
     String username;
     String password;
     String type;
+    String status;
 
     public User() {}
         
-    public User(String name, String username, String password, String type) {
+    public User(String name, String username, String password, String type, String status) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.type = type;
+        this.status = status;
     }
     
 
@@ -64,5 +66,15 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+    
+    public String getStatus ()
+    {
+        return status;
+    }
+    
+    public void setStatus (String status)
+    {
+        this.status = status;
     }
 }
