@@ -3,6 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="/template.jsp">
-	<jsp:param name="content" value="/user/profileEditContent"/>
-	<jsp:param name="title" value="edit user profile"/>
+	<jsp:param name="content" value="/space/manageSpaceContent"/>
+	<jsp:param name="title" value="add space"/>
 </jsp:include>
