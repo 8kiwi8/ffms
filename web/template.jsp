@@ -11,6 +11,17 @@
 <%
     String uri = request.getRequestURI();
     String pageName = uri.substring(uri.lastIndexOf("/")+1);
+    String name = (String)session.getAttribute("name");
+    String userLevel = (String)session.getAttribute("type");
+    String userName = null;
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("type"))
+                        userName = cookie.getValue();
+                }
+            }
+           
 %>
 
 <!doctype html>
@@ -66,8 +77,21 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li>
                                         <a> <span class="glyphicon glyphicon-user" style="padding-right:10px;" ></span>
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal">Login</button>
-								<div class="modal fade" id="mymodal">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal"><%
+                                                if(userName!=null)
+                                                out.println(userName);
+                                                else
+                                                out.println("Login");
+                                            
+                                            %></button>
+                                            <button type="submit" class="btn btn-primary" onclick="window.location.href='${pageContext.servletContext.contextPath}/LogoutServlet'"
+                                            <%
+                                             if(userName==null)
+                                               out.println("style='visibility:hidden;'>Logout</button>");
+                                             else
+                                               out.println(">Logout</button>");  
+                                            %>
+                                            			<div class="modal fade" id="mymodal">
 									<div class="modal-dialog">
                    						 <div class="modal-header">
                    						 	<h3> Login </h3>

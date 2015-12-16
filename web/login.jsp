@@ -13,12 +13,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>This is a Login Page</h1>
+        <h1>User not found</h1>
         <form method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/LoginServlet">
             <label>Username</label>
-            <input name="username">
+            <input name="inputEmail">
             <label>Password</label>
-            <input name="password">
+            <input name="inputPassword">
             <button type="submit">Login</button>
         </form>
     </body>
