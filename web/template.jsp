@@ -75,10 +75,13 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a> <span class="glyphicon glyphicon-user" style="padding-right:10px;" ></span>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal"><%
+                                <button type="submit" class="btn btn-primary" <% 
                                 if (userName != null) {
-                                    out.println(userName);
+                                   out.println("data-toggle='modal' data-target='#mymodal' >");
+                                   out.println(userName);
                                 } else {
+                                    out.println("data-toggle='modal' data-target='#mymodal' >");
+                                    
                                     out.println("Login");
                                 }
 
