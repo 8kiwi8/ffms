@@ -22,7 +22,10 @@
             }
         }
     }
-
+    else{
+        response.sendRedirect("index.jsp");
+        
+    }
 %>
 
 <!doctype html>
