@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("type", user.getType());
                 String type = (String) session.getAttribute("type");
                 if(type.equalsIgnoreCase("1")){
-                response.sendRedirect("adminIndex.html");
+                response.sendRedirect("adminIndex.jsp");
                 }
                 else{
                 response.sendRedirect("index.jsp");
