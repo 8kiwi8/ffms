@@ -9,7 +9,6 @@ import business.dao.UserDAO;
 import business.data.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -56,6 +55,8 @@ public class LoginServlet extends HttpServlet {
 
                 session.setAttribute("name", user.getName());
                 session.setAttribute("type", user.getType());
+                session.setAttribute("user", user);
+                session.setMaxInactiveInterval(1*60);
                 String type = (String) session.getAttribute("type");
                 if(type.equalsIgnoreCase("1")){
                 response.sendRedirect("adminIndex.jsp");

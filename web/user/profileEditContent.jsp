@@ -2,21 +2,32 @@
     Document   : profileEditContent
     Created on : 17-Dec-2015, 02:13:45
     Author     : ASUS
---%>
+--%><%@page import="business.data.User"%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
+<%
+    
+  User user = (User) session.getAttribute("user");  
+  if(user==null){
+   response.sendRedirect("index.jsp");
+  }
+ 
+%>
 <div class="row">
             	<div class="col-xs-3"></div>
                 <div class="table-responsive col-xs-6" >
                 	<form data-toggle="validator" role="form">   <!--TO DO Connect To UpdateUserProfileServlet And Variables2-->
 				 <div class="form-group">
 				    <label for="inputName" class="control-label">Name</label>
-				   	 <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required>
+                                    <input type="text" class="form-control" id="inputName" placeholder="<%out.println(user.getName());%>" required>
 				 </div>
 				 <div class="form-group">
 				    <label for="inputEmail" class="control-label">Email</label>
-				         <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+				         <input type="email" class="form-control" id="inputEmail" placeholder="<%out.println(user.getUsername());%>" data-error="Bruh, that email address is invalid" required>
 				             <div class="help-block with-errors"></div>
 					     </div>
                                  <div class="form-group">

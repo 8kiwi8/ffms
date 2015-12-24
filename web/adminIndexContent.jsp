@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
 <div id="image-slider" class="carousel slide" data-ride="carousel" style="margin-bottom:50px;">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">

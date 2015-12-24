@@ -39,10 +39,10 @@ public class UserDAO {
             statement = connection.createStatement();
             rs = statement.executeQuery(query);
             while (rs.next()) {
-                User user = new User();
+                User  user = new User();
                 user.setUid(rs.getLong("uid"));
                 user.setName(rs.getString("name"));
-                user.setName(rs.getString("username"));
+                user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setType(rs.getString("type"));
                 user.setStatus (rs.getString("status"));

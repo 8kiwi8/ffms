@@ -22,10 +22,7 @@
             }
         }
     }
-    else{
-        response.sendRedirect("index.jsp");
-        
-    }
+   
 %>
 
 <!doctype html>
@@ -62,8 +59,19 @@
 
                 <div class="collapse navbar-collapse" id="navbar-collapse-main">
                     <ul class="nav navbar-nav">
-                        <% if (pageName.equals("index.jsp")) { %>
-                        <li class="active"><a href="${context}/index.jsp">Home <span class="sr-only">(current)</span></a></li>
+                        <% if (pageName.equals("index.jsp")||pageName.equals("adminIndex.jsp")) { %>
+                        <li class="active"><a href="${context}/<%
+                            
+                            if(userLevel!=null){
+                                if(userLevel.equalsIgnoreCase("1")){
+                                    out.println("adminIndex.jsp");
+                                }
+                                else
+                                    out.println("index.jsp");
+                            }
+                            else
+                                    out.println("index.jsp");
+                            %>">Home <span class="sr-only">(current)</span></a></li>
                             <% } else { %>
                         <li><a href="${context}/index.jsp">Home</a></li>
                             <% } %>
@@ -77,7 +85,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a> <span class="glyphicon glyphicon-user" style="padding-right:10px;" ></span>
+                            <a > <span class="glyphicon glyphicon-user" style="padding-right:10px;" ></span>
                                 <button type="submit" class="btn btn-primary" <% 
                                 if (userName != null) {
                                    out.println("data-toggle='modal' data-target='#mymodal' >");
@@ -125,7 +133,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <a> <class="btn btn-default" href="register.html" role="button">SignUp</a>
+                                <a class="btn btn-default" href="register.jsp" role="button">SignUp</a>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-default">Submit</button>
                             </div>

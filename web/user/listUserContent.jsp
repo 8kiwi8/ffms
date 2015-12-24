@@ -22,8 +22,8 @@
                         <c:forEach items="${users}" var="user">
                     	<tr> 
                     		<!-- take data from database user name -->
-                     		<td> ${user.name}</td>
-                    		<td> ${user.email} </td>   		
+                     		<td> <c:out value="${user.getName}" /></td>
+                    		<td> ${user.getUsername} </td>   		
                     		<td> <button type="button" class="btn btn-default"> Delete </button> </td>
                     	</tr>
                         </c:forEach>
