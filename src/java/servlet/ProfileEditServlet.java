@@ -14,13 +14,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author kingw
+ * @author Aydil
  */
-@WebServlet(name = "RegisterServlet", urlPatterns = {"/RegisterServlet"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "ProfileEditServlet", urlPatterns = {"/ProfileEditServlet"})
+public class ProfileEditServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,16 +36,17 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
+            HttpSession session = request.getSession(true);
+            User user = (User) session.getAttribute("user"); 
             String name = request.getParameter("inputName");
             String username = request.getParameter("inputUsername");
             String password = request.getParameter("password");
             String status = null;
             
-            User user = new User(name, username, password, "user", status);
+            
             UserDAO userDAO = new UserDAO();
-            User USER;
-            USER = userDAO.getUser(username);
+            User USER=null;
+            USER = userDAO.updateUser((int) user.getUid(),name,username,password);
            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -55,11 +57,13 @@ public class RegisterServlet extends HttpServlet {
             
             if(USER!=null){
             out.println("<h1>Not Complete!</h1>");
+            out.println("<p>"+USER.getName()+"</p>");
+            
             
             }
             else{
             out.println("<h1>Complete!</h1>");
-            userDAO.addUser(user);
+            
             }
             
             out.println("</body>");

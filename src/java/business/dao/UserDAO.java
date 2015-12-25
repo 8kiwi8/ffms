@@ -144,8 +144,8 @@ public class UserDAO {
             ptmt.setString(1, user.getName());
             ptmt.setString(2, user.getUsername());
             ptmt.setString(3, user.getPassword());
-            ptmt.setString(4, user.getType());
-            ptmt.setString(5, user.getStatus());
+            ptmt.setString(4, "2");
+            ptmt.setString(5, "active");
             ptmt.executeUpdate();
         } catch (SQLException ex) {
              while (ex != null) {
@@ -162,28 +162,28 @@ public class UserDAO {
         }
     }
     
-        public User updateUser(int uid) 
+        public User updateUser(int uid,String name,String username,String password) 
         {
         String query = "SELECT * FROM user WHERE uid=" + uid;
-        String query1 = "UPDATE user SET name=?, username=?, password=?, type=?, status=? WHERE uid=" + uid;
+        String query1 = "UPDATE user SET name="+name+", username="+username+", password="+password+", type=2, status=active WHERE uid=" + uid;
         ResultSet rs = null;
-        User user = null;
+       
         try 
         {
             connection = JDBCUtil.getConnection();
             statement = connection.createStatement();
-            rs = statement.executeQuery(query);
-            if (rs.next()) 
-            {
-                user = new User();
+           rs = statement.executeQuery(query1);
+           rs.next();
+//   if (rs.next()) 
+        /* {
                 ptmt = connection.prepareStatement(query1);
-                ptmt.setString(1, user.getName());
-                ptmt.setString(2, user.getUsername());
-                ptmt.setString(3, user.getPassword());
-                ptmt.setString(4, user.getType());
-                ptmt.setString(5, user.getStatus());
+                ptmt.setString(1, name);
+                ptmt.setString(2, username);
+                ptmt.setString(3, password);
+                ptmt.setString(4, "2");
+                ptmt.setString(5, "active");
                 ptmt.executeUpdate();
-            }
+          }*/
         } 
         catch (SQLException ex) 
         {
@@ -203,7 +203,7 @@ public class UserDAO {
             JDBCUtil.close(statement);
             JDBCUtil.close(connection);
         }
-        return user;
+        return this.getUser(uid);
     }
         
     public void deleteUser(int uid) {

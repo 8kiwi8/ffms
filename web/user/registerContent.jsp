@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!-- register  -->
 				
@@ -12,25 +13,23 @@
             	<div class="col-xs-3"></div>
                 <div class="table-responsive col-xs-6" >
                 	<div class="panel-body">
-	                    <form data-toggle="validator" role="form" method="post" action="<c:out value='${pageContext.servletContext.contextPath}'/>/RegisterServlet">
+	                    <form data-toggle="validator" role="form" method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/RegisterServlet">
 				 <div class="form-group">
 		                    <label for="inputName" class="control-label">Name</label>
-				        <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required>
+                                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" required>
 				 </div>
 				 <div class="form-group">
 				    <label for="inputEmail" class="control-label">Email</label>
-					<input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+					<input type="email" class="form-control" id="inputEmail" name="inputUsername" placeholder="Email" data-error="Bruh, that email address is invalid" required>
 					    <div class="help-block with-errors"></div>
 					    </div>
 					    <div class="form-group">
 						<label for="inputPassword" class="control-label">Password</label>
 						   	<div >
-						     	    <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+						     	    <input type="password" data-minlength="6" name="inputPassword" class="form-control" id="inputPassword" placeholder="Password" required>
 						     	    <span class="help-block">Minimum of 6 characters</span>
 						    	</div>
-						    				
-						    	    <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
-						    	    <div class="help-block with-errors"></div>
+						    	
 					    </div>
 			                     <div>
 						 <button type="submit" class="btn btn-primary">Submit</button>
