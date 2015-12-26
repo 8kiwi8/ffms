@@ -7,9 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <div class="row">
-            	<div class="col-xs-3"></div>
+            	<div class="col-xs-2"></div>
 				
-                <div class="col-xs-6" >
+                <div class="col-xs-8" >
                 	<h4> My Booking </h4>
                     <table class="table table-bordered">
                     	<tr> 
@@ -38,7 +38,7 @@
                     </table>
 			    </div>
 				
-			    <div class="col-xs-3"></div>
+			    <div class="col-xs-8"></div>
 			</div>
 			
 

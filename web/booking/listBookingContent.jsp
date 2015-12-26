@@ -14,8 +14,6 @@
                                 <td>Booking Date</td>
                                 <td>Booked Space</td>
                                 <td>Booker</td>
-                                <td>Start Time</td>
-                                <td>End Time</td>
                                 <td>Price </td>
                                 <td>Remark</td>
                                 <td> Confirmation</td>
@@ -26,14 +24,9 @@
                                 <td>${booking.date}</td>
                                 <td>${booking.space.name}</td>
                                 <td>${booking.user.name}</td>
-                                <td>${booking.start}</td>
-                                <td>${booking.end}</td>
                                 <td>${booking.price}</td>
                                 <td>${booking.remark}</td>
-                    		<td> <select name="confirmation" class="form-control">
-                               		<option value="Yes">Yes</option>
-                               		<option selected value="No">No</option>
-                    		    </select></td>
+                    		<td> <button type="button" class="btn btn-default"> Confirm </button></td>
                     	</tr>
                         </c:forEach>
 
