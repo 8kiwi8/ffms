@@ -38,7 +38,3 @@
 <% } %>
 
 <!-- END OF LEFT-ALIGNED NAVBAR OPTIONS -->
-
-
-<li><a href="${context}/index.jsp">Teststes</a></li>
-<li><a href="${context}/index.jsp">Te1231s</a></li>
