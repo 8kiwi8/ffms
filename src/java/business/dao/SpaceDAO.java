@@ -104,6 +104,7 @@ public class SpaceDAO {
             ptmt.setDouble(4, space.getPrice());
             ptmt.setString(5, space.getStatus());
             ptmt.executeUpdate();
+            System.out.println(ptmt);
         } catch (SQLException ex) {
              while (ex != null) {
                 System.out.println ("SQLState: " + ex.getSQLState ());
