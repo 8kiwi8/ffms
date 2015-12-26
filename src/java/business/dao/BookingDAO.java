@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -209,9 +210,10 @@ public class BookingDAO {
     }
     
     public List<Booking> getBooking(java.util.Date myDate) {
-        java.sql.Timestamp sqlDate = new java.sql.Timestamp(myDate.getTime());
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
         String query = "SELECT * FROM booking, user, space, time WHERE "
-                + "booking.uid=user.uid AND booking.sid=space.sid AND time.tid=booking.tid AND booking.date=" + sqlDate.getDate();
+                + "booking.uid=user.uid AND booking.sid=space.sid AND time.tid=booking.tid AND booking.date=\"" + ft.format(myDate) + "\"";
+        System.out.println(query);
         ResultSet rs = null;
         List<Booking> bookings = new ArrayList<Booking>();
         try {

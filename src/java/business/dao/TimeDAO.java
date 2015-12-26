@@ -36,6 +36,7 @@ public class TimeDAO {
                 Time time = new Time();
                 time.setTid(rs.getInt("tid"));
                 time.setDescription(rs.getString("description"));
+                times.add(time);
             }
         } catch (SQLException ex) {
              while (ex != null) {

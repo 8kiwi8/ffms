@@ -49,12 +49,13 @@
                     <td><div class="text-center">${space.name}</div></td>
                     <c:forEach items="${times}" var="time">
                         <c:forEach items="${bookings}" var="booking">
-                            <c:if test="%{booking.tid == time.tid && booking.sid == space.sid}">
+                            <c:set var="found" value="false"/>
+                            <c:if test="${booking.tid == time.tid && booking.sid == space.sid}">
                                 <c:set var="found" value="true"/>
                             </c:if>
                         </c:forEach>
                         <c:choose>
-                            <c:when test="${found.equals("true")}">
+                            <c:when test="${found == 'true'}">
                                 <td class="danger"></td>
                             </c:when>
                             <c:otherwise>
@@ -76,22 +77,30 @@
         </div>
 
     </div>
-                
-    <script>
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1; //January is 0!
-        var yyyy = today.getFullYear();
+    <c:choose>
+        <c:when test="${not empty param.date}">
+            <script>
+                document.getElementById("bookingDate").setAttribute("value", "${param.date}");
+            </script>
+        </c:when>
+        <c:otherwise>
+            <script>
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1; //January is 0!
+                var yyyy = today.getFullYear();
 
-        if (dd < 10) {
-            dd = '0' + dd
-        } 
+                if (dd < 10) {
+                    dd = '0' + dd
+                } 
 
-        if (mm < 10) {
-            mm = '0' + mm
-        } 
+                if (mm < 10) {
+                    mm = '0' + mm
+                } 
 
-        today = yyyy + '-' + mm + '-' + dd;
-        document.getElementById("bookingDate").setAttribute("value", today);
-    </script>
+                today = yyyy + '-' + mm + '-' + dd;
+                document.getElementById("bookingDate").setAttribute("value", today);
+            </script>
+        </c:otherwise>
+    </c:choose>
 </div>

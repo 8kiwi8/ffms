@@ -10,7 +10,12 @@ import business.dao.SpaceDAO;
 import business.dao.TimeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,9 +52,21 @@ public class NewBooking extends HttpServlet {
             //Put the list of data as an attribute to be posted
             request.setAttribute("spaces", spaceDAO.getAllSpace());
             request.setAttribute("times", timeDAO.getAllTime());
-            request.setAttribute("bookings", bookingDAO.getBooking(new Date()));
+            
+            Date date;
+            if(request.getParameter("date")!= null && !request.getParameter("date").equals("")) {
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                date = format.parse(request.getParameter("date"));
+            } else {
+                date = new Date();
+            }
+            System.out.print(date);
+            request.setAttribute("bookings", bookingDAO.getBooking(date));
+            
             //Post everything to the web page
             rd.forward(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(NewBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
