@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package dispatcher;
 
+import business.dao.PageDAO;
 import business.dao.UserDAO;
-import business.data.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author kingw
+ * @author Aydil
  */
-@WebServlet(name = "RegisterServlet", urlPatterns = {"/RegisterServlet"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "NavDispatcher", urlPatterns = {"/NavDispatcher"})
+public class NavDispatcher extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,37 +36,16 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
-            String name = request.getParameter("inputName");
-            String username = request.getParameter("inputUsername");
-            String password = request.getParameter("inputPassword");
-            String status = null;
-            
-            User user = new User(name, username, password, "user", status);
-            UserDAO userDAO = new UserDAO();
-            User USER;
-            USER = userDAO.getUser(username);
-           
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddUserServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            
-            if(USER!=null){
-            out.println("<h1>Not Complete!</h1>");
-            RequestDispatcher rd = request.getRequestDispatcher(request.getHeader("referer"));
-            request.setAttribute("error", "Username already taken");
+            /* TODO output your page here. You may use following sample code. */
+            //State which url should the data post to
+            RequestDispatcher rd = request.getRequestDispatcher("/leftNavBar.jsp");
+            //DAO is used to fetch data from database
+            PageDAO pageDAO = new PageDAO();
+            pageDAO.setContextPath(request.getContextPath());
+            //Put the list of data as an attribute to be posted
+            request.setAttribute("pages", pageDAO.getPage((String) request.getSession().getAttribute("type")));
+            //Post everything to the web page
             rd.forward(request, response);
-            }
-            else{
-            out.println("<h1>Complete!</h1>");
-            userDAO.addUser(user);
-            }
-            
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 

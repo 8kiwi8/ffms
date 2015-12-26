@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <div class="row">
             	<div class="col-xs-3"></div>
@@ -19,11 +20,11 @@
                     	    
                     		
                     	</tr>
-                        <c:forEach items="${users}" var="user">
+                        <c:forEach items="${requestScope.users}" var="user">
                     	<tr> 
                     		<!-- take data from database user name -->
-                     		<td> <c:out value="${user.getName}" /></td>
-                    		<td> ${user.getUsername} </td>   		
+                     		<td> ${user.name}</td>
+                    		<td> ${user.username} </td>   		
                     		<td> <button type="button" class="btn btn-default"> Delete </button> </td>
                     	</tr>
                         </c:forEach>
