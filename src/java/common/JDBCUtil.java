@@ -32,7 +32,7 @@ public class JDBCUtil
     private static String driver = "com.mysql.jdbc.Driver";
     private static String remoteurl = "jdbc:mysql://localhost:3306/ffms";
     private static String localurl = "jdbc:mysql://localhost:3306/ffms";
-    private static String userName = "scsj3303";
+    private static String userName = "root";
     private static String password = "";
     
     static boolean onRemote;
