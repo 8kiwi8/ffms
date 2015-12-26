@@ -15,7 +15,7 @@
                     	<tr> 
                     		<td> Date </td>
                     		<td> Start </td>
-                    	    <td> End   </td>
+                                <td> End   </td>
                     		<td> User </td>
                     		<td> Court </td>
                     		<td> Price </td>

@@ -2,30 +2,6 @@
 <%@page import="java.text.DateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%
-    
-    DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-    String formattedDate = df.format(df);
-    
-    String dateOfBooking;
-    String dd;
-    String mm;
-    String yyyy;
-    
-    // yyyy-mm-dd
-    if (request.getParameter("date") != null) {
-        dateOfBooking = request.getParameter("date");
-    
-        dd = dateOfBooking.substring(8, 10);
-        mm = dateOfBooking.substring(5, 7);
-        yyyy = dateOfBooking.substring(0, 4);
-    }
-    
-%>
-
-
-
 <div class="row">
     
     <div class="col-xs-2">
@@ -46,7 +22,7 @@
             
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <strong>Selected Date:</strong> <%=dd%>/<%=mm%>/<%=yyyy%>
+                    <strong>Selected Date:</strong>
                 </div>
             </div>
                 

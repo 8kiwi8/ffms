@@ -3,74 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package dispatcher;
 
-import business.dao.UserDAO;
-import business.data.User;
+import business.dao.BookingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author kingw
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "MyBooking", urlPatterns = {"/MyBooking"})
+public class MyBooking extends HttpServlet {
 
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession(true);
-            
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            String username = request.getParameter("inputEmail");
-            String password = request.getParameter("inputPassword");
-            
-            UserDAO userDAO = new UserDAO();
-            
-            User user = userDAO.getUser(username);
-            
-               
-            String result = "";
-            
-            if(user == null || !password.equals(user.getPassword())) {
-                
-                RequestDispatcher rd = request.getRequestDispatcher(request.getHeader("referer"));
-                request.setAttribute("error", "Wrong username or password");
-                rd.forward(request, response);
-            
-            } else {
-                Cookie uType = new Cookie("type", user.getName());
-                // setting cookie to expiry in 1 mins
-                uType.setMaxAge(1 * 60);
-                response.addCookie(uType);
-                session.setAttribute("uid", user.getUid());
-                session.setAttribute("name", user.getName());
-                session.setAttribute("type", user.getType());
-                session.setAttribute("user", user);
-                session.setMaxInactiveInterval(60*60*60);
-                String type = (String) session.getAttribute("type");
-                if(type.equalsIgnoreCase("admin")){
-                response.sendRedirect("adminIndex.jsp");
-                }
-                else{
-                response.sendRedirect("index.jsp");
-                
-                }
-                
-            }
-            
+            //State which url should the data post to
+            RequestDispatcher rd = request.getRequestDispatcher("/booking/listBooking.jsp");
+            //DAO is used to fetch data from database
+            BookingDAO bookingDAO = new BookingDAO();
+            //Put the list of data as an attribute to be posted
+            request.setAttribute("bookings", bookingDAO.getUserBooking(Long.parseLong((String) request.getSession().getAttribute("uid"))));
+            //Post everything to the web page
+            rd.forward(request, response);
         }
     }
 
