@@ -32,6 +32,20 @@
     
 
     <div class="col-xs-12 col-sm-9 col-lg-10">
+        <c:if test="${message != null}">
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>${message}</strong>
+                <c:remove var="message"/>
+            </div>
+        </c:if>
+        <c:if test="${bookingError != null}">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>${bookingError}</strong>
+                <c:remove var="bookingError"/>
+            </div>
+        </c:if>
         <div class="panel panel-default">
             <c:choose>
                 <c:when test="${empty param.date}">
@@ -51,7 +65,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <form action="test.jsp" method="get" id="selectedTimeSlot">
+                                <form action="${pageContext.request.contextPath}/NewBookingServlet" method="get" id="selectedTimeSlot">
                                     <input type="hidden" name="selectedDate" value="<%=selectedDate%>">
                                     <c:forEach items="${spaces}" var="space">
                                         <tr>
@@ -81,8 +95,6 @@
                     </div>
                 </c:otherwise>
             </c:choose>
-            
-            
         </div>
 
         <div class="panel panel-default">
@@ -92,13 +104,7 @@
                 
             </div>
         </div>
-        <c:if test="${message != null}">
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>${message}</strong>
-                <c:remove var="message"/>
-            </div>
-        </c:if>
+        
     </div>
     <c:choose>
         <c:when test="${not empty param.date}">

@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package dispatcher;
 
-import business.dao.BookingDAO;
-import business.data.Booking;
+import business.dao.SpaceDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kingw
  */
-@WebServlet(name = "NewBookingServlet", urlPatterns = {"/NewBookingServlet"})
-public class NewBookingServlet extends HttpServlet {
+@WebServlet(name = "Courts", urlPatterns = {"/Courts"})
+public class Courts extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,33 +35,14 @@ public class NewBookingServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            if(request.getParameter("selectedDate")==null || request.getParameter("selectedTime")==null) {
-                request.getSession().setAttribute("bookingError", "Please Select a time and date");
-                response.sendRedirect(request.getHeader("Referer"));
-                return;
-            }
-            String date = request.getParameter("selectedDate");
-            String spacetime = request.getParameter("selectedTime");
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date theDate = format.parse(date);
-            Booking booking = new Booking();
-            booking.setDate(theDate);
-            String[] parts = spacetime.split("-");
-            booking.setSid(Long.parseLong(parts[0]));
-            booking.setTid(Integer.parseInt(parts[1]));
-            booking.setRemark("Test");
-            booking.setPrice(10.11);
-            booking.setUid((long) request.getSession().getAttribute("uid"));
-            booking.setStart(new Date());
-            booking.setEnd(new Date());
-            booking.setStatus("Pending");
-            BookingDAO bookingDAO = new BookingDAO();
-            bookingDAO.newBooking(booking);
-            request.getSession().setAttribute("message", "You have succefully make the booking");
-            response.sendRedirect(request.getHeader("Referer"));
-        } catch (ParseException ex) {
-            Logger.getLogger(NewBookingServlet.class.getName()).log(Level.SEVERE, null, ex);
+            //State which url should the data post to
+            RequestDispatcher rd = request.getRequestDispatcher("/courts.jsp");
+            //DAO is used to fetch data from database
+            SpaceDAO spaceDAO = new SpaceDAO();
+            //Put the list of data as an attribute to be posted
+            request.setAttribute("spaces", spaceDAO.getAllSpace());
+            //Post everything to the web page
+            rd.forward(request, response);
         }
     }
 

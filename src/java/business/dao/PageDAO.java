@@ -20,7 +20,7 @@ public class PageDAO {
         pages = new ArrayList<Page>();
         //nav user
         pages.add(new Page("Home", "/index.jsp", "user"));
-        pages.add(new Page("Courts", "/courts.jsp", "user"));
+        pages.add(new Page("Courts", "/Courts", "user"));
         pages.add(new Page("My Bookings", "/MyBooking", "user"));
         
         
