@@ -36,7 +36,7 @@
     
                     </table>
                         <div>
-                            <a href="/addSpace.jsp" class="btn btn-info" role="button">Add Space</a>
+                            <a href="<c:out value="${pageContext.servletContext.contextPath}"/>/space/addSpace.jsp" class="btn btn-info" role="button">Add Space</a>
 		        </div>
 			    </div>
 			    <div class="col-xs-2"></div>
