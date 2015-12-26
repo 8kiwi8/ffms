@@ -25,7 +25,7 @@
                     		<!-- take data from database user name -->
                      		<td> ${user.name}</td>
                     		<td> ${user.username} </td>   		
-                    		<td> <button type="button" class="btn btn-default"> Delete </button> </td>
+                    		<td> <button type="submit" class="btn btn-default" onclick="window.location.href = '${pageContext.servletContext.contextPath}/DeleteUser?uid=${user.uid}'"> Delete </button> </td>
                     	</tr>
                         </c:forEach>
 

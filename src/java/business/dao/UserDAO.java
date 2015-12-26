@@ -31,7 +31,7 @@ public class UserDAO {
     }
     
     public List<User> getAllUser() {
-        String query = "SELECT * FROM user";
+        String query = "SELECT * FROM user WHERE type='user' ";
         ResultSet rs = null;
         List<User> users = new ArrayList<User>();
         try {
@@ -206,10 +206,10 @@ public class UserDAO {
         return this.getUser(uid);
     }
         
-    public void deleteUser(int uid) {
+    public void deleteUser(String uid) {
         try {
             connection = JDBCUtil.getConnection();
-            String query = "DELETE FROM user WHERE uid=" + uid;
+            String query = "DELETE FROM user WHERE uid='" + uid +"'";
             ptmt = connection.prepareStatement(query);
             ptmt.executeUpdate();
         } catch (SQLException ex) {
