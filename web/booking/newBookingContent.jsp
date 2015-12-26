@@ -15,14 +15,15 @@
                             <input type="date" name="date" id="bookingDate" class="form-control" >
                         </div>
 
-                        <button type="submit" class="btn btn-default pull-right">Submit</button>
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
                     </form>
                 </div>
             </div>
             
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <strong>Selected Date:</strong>
+                    <strong>Selected Date:</strong><br>
+                    12/2/2016
                 </div>
             </div>
                 
@@ -70,7 +71,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <p class="pull-left">* A selection represents 1 hour of booked time</p>
-                <input class="btn btn-default pull-right" type="submit" value="Submit">
+                <input class="btn btn-success pull-right" type="submit" value="Submit">
             </div>
         </div>
 

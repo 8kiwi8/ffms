@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2015 at 07:59 PM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Generation Time: Dec 26, 2015 at 08:42 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `ffms`
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `booking` (
-  `bid` int(25) NOT NULL,
+  `bid` int(25) NOT NULL AUTO_INCREMENT,
   `uid` int(25) NOT NULL,
   `sid` int(25) NOT NULL,
   `price` double NOT NULL,
@@ -36,8 +36,19 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
   `remark` text NOT NULL,
-  `status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(20) NOT NULL,
+  PRIMARY KEY (`bid`),
+  KEY `fk_sid` (`sid`),
+  KEY `fk_uid` (`uid`),
+  KEY `fk_id` (`tid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`bid`, `uid`, `sid`, `price`, `date`, `tid`, `start`, `end`, `remark`, `status`) VALUES
+(1, 1, 1, 45, '2015-12-03', 10, '2015-12-03 02:00:00', '2015-12-03 03:00:00', 'big', 'active');
 
 -- --------------------------------------------------------
 
@@ -46,13 +57,24 @@ CREATE TABLE IF NOT EXISTS `booking` (
 --
 
 CREATE TABLE IF NOT EXISTS `space` (
-  `sid` int(25) NOT NULL,
+  `sid` int(25) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `picPath` text NOT NULL,
   `price` double NOT NULL,
-  `status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(20) NOT NULL,
+  PRIMARY KEY (`sid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `space`
+--
+
+INSERT INTO `space` (`sid`, `name`, `description`, `picPath`, `price`, `status`) VALUES
+(1, 'Court 1', '- Vinyl Futsal Field\r\n- Favoured field among futsal players.    Suitable for performing actions like diving.\r\n- Also known as rubber, soft field\r\n- Size: 15m X 25m (width X length)', '/localhost:8080/ffms/img/vinylfield.png', 45, 'active'),
+(2, 'Court 2', '- Vinyl Futsal Field\r\n- Favoured field among futsal players. Suitable for performing actions like diving.\r\n- Also known as rubber, soft field\r\n- Size: 18m X 38m (width X length)', '/localhost:8080/ffms/img/vinylfield.png', 55, 'active'),
+(3, 'Court 3', '- Parquette Futsal Field\r\n- Popular field in Europe and Latin America\r\n- Made of Wood\r\n- Size: 16m X 27m (width X length)', '/localhost:8080/ffms/img/paraquette.png', 55, 'active'),
+(4, 'Court 4', '- Futsal Artificial Grass\r\n- Indoor soccer with outdoor feel\r\n- Suitable for casual games\r\n- Size: 16m X 27m (width X length)', 'http://localhost:8080/ffms/img/futsal-turff.png', 60, 'active');
 
 -- --------------------------------------------------------
 
@@ -62,7 +84,8 @@ CREATE TABLE IF NOT EXISTS `space` (
 
 CREATE TABLE IF NOT EXISTS `time` (
   `tid` int(25) NOT NULL,
-  `description` varchar(25) NOT NULL
+  `description` varchar(25) NOT NULL,
+  PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -92,13 +115,14 @@ INSERT INTO `time` (`tid`, `description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `uid` int(25) NOT NULL,
+  `uid` int(25) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `type` varchar(20) NOT NULL,
-  `status` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `status` varchar(20) NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `user`
@@ -107,56 +131,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`uid`, `name`, `username`, `password`, `type`, `status`) VALUES
 (1, 'test', 'test@test', 'testtest', 'admin', 'active');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `booking`
---
-ALTER TABLE `booking`
-  ADD PRIMARY KEY (`bid`),
-  ADD KEY `fk_sid` (`sid`),
-  ADD KEY `fk_uid` (`uid`),
-  ADD KEY `fk_id` (`tid`);
-
---
--- Indexes for table `space`
---
-ALTER TABLE `space`
-  ADD PRIMARY KEY (`sid`);
-
---
--- Indexes for table `time`
---
-ALTER TABLE `time`
-  ADD PRIMARY KEY (`tid`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`uid`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `booking`
---
-ALTER TABLE `booking`
-  MODIFY `bid` int(25) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `space`
---
-ALTER TABLE `space`
-  MODIFY `sid` int(25) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `uid` int(25) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --

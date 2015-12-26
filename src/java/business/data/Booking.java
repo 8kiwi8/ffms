@@ -107,14 +107,32 @@ public class Booking {
 
     public void setStart(Date start) {
         this.start = start;
+        setStartTime (start);
     }
-
+    
+    public void setStartTime (Date start)
+    {
+        int hour = start.getHours();
+        int minute = start.getMinutes();
+        String startTime = Integer.toString(hour);
+        startTime += " : " + Integer.toString(minute);
+    }
+    
+    public void setEndTime (Date end)
+    {    
+        int hour = end.getHours();
+        int minute = end.getMinutes();
+        String endTime = Integer.toString(hour);
+        endTime += " : " + Integer.toString(minute);
+    }
+    
     public Date getEnd() {
         return end;
     }
 
     public void setEnd(Date end) {
         this.end = end;
+        setEndTime (end);
     }
 
     public String getRemark() {

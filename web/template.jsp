@@ -80,7 +80,7 @@
                                  <button type="submit" class="btn btn-primary navbar-btn" style="margin-right:7px;"
                                     onclick="window.location.href = '${context}/user/profile.jsp'">
                                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 10px;"></span>
-                                       <% out.println(userName); %>
+                                       <% out.println(name); %>
                                 </button>
                             <% } else { %>
                                 <button type="submit" class="btn btn-primary navbar-btn" style="margin-right:7px;"
@@ -113,12 +113,13 @@
                         </div>
                         
                         <form data-toggle="validator" role="form" method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/LoginServlet">	
-                            <div class="modal-body">
+                            <div class="modal-body modal-bg">
                                 <div class="form-group">
                                     <label for="inputEmail" class="control-label">Email</label>
                                     <input type="email" class="form-control" id="inputEmail" name="inputEmail"  placeholder="Email Address" data-error="Bruh, that email address is invalid" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label for="inputPassword" class="control-label">Password</label>
                                     <div>
