@@ -35,18 +35,19 @@ public class ProfileEditServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(true);
+            
             User user = (User) session.getAttribute("user"); 
-            String name = request.getParameter("inputName");
-            String username = request.getParameter("inputUsername");
+            String name = request.getParameter("Name");
+            //String username = request.getParameter("email");
             String password = request.getParameter("password");
             String status = null;
             
             
             UserDAO userDAO = new UserDAO();
             User USER=null;
-            USER = userDAO.updateUser((int) user.getUid(),name,username,password);
+            USER = userDAO.updateUser((int) user.getUid(),name,user.getUsername(),password);
            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -57,7 +58,9 @@ public class ProfileEditServlet extends HttpServlet {
             
             if(USER!=null){
             out.println("<h1>Not Complete!</h1>");
-            out.println("<p>"+USER.getName()+"</p>");
+            out.println("<p>"+name+"</p>");
+            //out.println("<p>"+username+"</p>");
+            out.println("<p>"+password+"</p>");
             
             
             }
