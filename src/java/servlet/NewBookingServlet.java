@@ -5,14 +5,16 @@
  */
 package servlet;
 
-import business.dao.SpaceDAO;
-import business.data.Space;
+import business.dao.BookingDAO;
+import business.data.Booking;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
-import java.sql.Connection;
-import java.sql.Statement;
-import javax.servlet.RequestDispatcher;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kingw
  */
-@WebServlet(name = "AddSpaceServlet", urlPatterns = {"/AddSpaceServlet"})
-public class AddSpaceServlet extends HttpServlet {
+@WebServlet(name = "NewBookingServlet", urlPatterns = {"/NewBookingServlet"})
+public class NewBookingServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,22 +42,30 @@ public class AddSpaceServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String name = request.getParameter("name");
-            String description = request.getParameter("description");
-            String priceS = request.getParameter("price");
-            String picPath = "-";
-            String status = "active";
-            double price ;
-            price = Double.parseDouble(priceS);
-            Space space = new Space(name, description, picPath, price, status);
-            SpaceDAO spaceDAO = new SpaceDAO();
-            spaceDAO.addSpace(space);  
-              
-            response.sendRedirect(request.getContextPath() + "/ListSpace");
-            
-        } 
+            String date = request.getParameter("selectedDate");
+            String spacetime = request.getParameter("selectedTime");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date theDate = format.parse(date);
+            Booking booking = new Booking();
+            booking.setDate(theDate);
+            String[] parts = spacetime.split("-");
+            booking.setSid(Long.parseLong(parts[0]));
+            booking.setTid(Integer.parseInt(parts[1]));
+            booking.setRemark("Test");
+            booking.setPrice(10.11);
+            booking.setUid((long) request.getSession().getAttribute("uid"));
+            booking.setStart(new Date());
+            booking.setEnd(new Date());
+            booking.setStatus("Pending");
+            BookingDAO bookingDAO = new BookingDAO();
+            bookingDAO.newBooking(booking);
+            request.getSession().setAttribute("message", "You have succefully make the booking");
+            response.sendRedirect(request.getHeader("Referer"));
+        } catch (ParseException ex) {
+            Logger.getLogger(NewBookingServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

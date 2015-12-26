@@ -5,17 +5,18 @@
                 <div class="table-responsive col-xs-6" >
                     <h4> Update Space </h4>
                 	<form id="addSpaceForm" method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/UpdateSpaceServlet">   <!--TO DO add Variables2-->
+                                <input value="${space.sid}" name="sid" class="hidden">
 				 <div class="form-group">
 				    <label for="inputName" class="control-label">Name</label>
-				   	 <input type="text" class="form-control" id="inputName" placeholder="Grass court" required>
+				   	 <input value="${space.name}" type="text" class="form-control" name="name" placeholder="Grass court" required>
 				 </div>
                                  <div class="form-group">
 				    <label for="inputName" class="control-label">Descriptions</label>
-				   	 <input type="textarea" class="form-control" id="inputName" placeholder="Size, further details, condition" required>
+				   	 <input value="${space.description}" type="textarea" class="form-control" name="description" placeholder="Size, further details, condition" required>
 				 </div>
                                  <div class="form-group">
 				    <label for="inputName" class="control-label">Price</label>
-				   	 <input type="textarea" class="form-control" id="inputName" placeholder="RM50" required>
+				   	 <input value="${space.price}" type="textarea" class="form-control" name="price" placeholder="RM50" required>
 				 </div>
 <!--                                 <div class="form-group">
                                     <label for="exampleInputFile">Upload Picture</label>

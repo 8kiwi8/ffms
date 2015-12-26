@@ -16,7 +16,6 @@
                                 <td>Price</td>
                                 <td>Update</td>
                                 <td>Delete</td>
-                                <td>Activate/Deactivate </td>
                                 
                     	</tr>
                         <c:forEach items="${spaces}" var="space">
@@ -25,18 +24,15 @@
                     		<td>${space.name}</td>
                                 <td>${space.description}</td>
                                 <td>${space.price}</td>
-                                <td><button type="button" class="btn btn-default"> Update </button></td>
-                                <td><button type="button" class="btn btn-default"> Delete </button></td>
-                                <td>Activate</td>
-                  
-                    		
+                                <td><a href="<c:out value="${pageContext.servletContext.contextPath}"/>/UpdateSpace?sid=${space.sid}" class="btn btn-default" role="button">Update</a></td>
+                                <td><a href="<c:out value="${pageContext.servletContext.contextPath}"/>/DeleteSpace?sid=${space.sid}" class="btn btn-danger" role="button">Delete</a></td>
                     	</tr>
                         </c:forEach>
 
     
                     </table>
                         <div>
-                            <a href="/addSpace.jsp" class="btn btn-info" role="button">Add Space</a>
+                            <a href="<c:out value="${pageContext.servletContext.contextPath}"/>/space/addSpace.jsp" class="btn btn-info" role="button">Add Space</a>
 		        </div>
 			    </div>
 			    <div class="col-xs-2"></div>
