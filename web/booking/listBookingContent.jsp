@@ -16,7 +16,10 @@
                                 <td>Booker</td>
                                 <td>Price </td>
                                 <td>Remark</td>
+                                <td>Status</td>
                                 <td> Confirmation</td>
+                                
+                                
                     	</tr>
                         <c:forEach items="${bookings}" var="booking">
                     	<tr> 
@@ -26,7 +29,10 @@
                                 <td>${booking.user.name}</td>
                                 <td>${booking.price}</td>
                                 <td>${booking.remark}</td>
-                    		<td> <button type="button" class="btn btn-default"> Confirm </button></td>
+                                <td>inactive</td>
+                    		<td> <button type="button" class="btn btn-primary btn-sm">Approve</button>
+                                    <button type="button" class="btn btn-primary btn-sm">Reject</button></td>
+                                
                     	</tr>
                         </c:forEach>
 
