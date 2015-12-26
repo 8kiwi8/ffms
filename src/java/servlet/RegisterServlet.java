@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,30 +36,27 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
            
-            String name = request.getParameter("inputName");
+            String name = request.getParameter("Name");
             String username = request.getParameter("inputUsername");
             String password = request.getParameter("inputPassword");
             String status = null;
             
-            User user = new User(name, username, password, "user", status);
+            User user = new User(name, username, password, "user", "active");
             UserDAO userDAO = new UserDAO();
             User USER;
             USER = userDAO.getUser(username);
            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddUserServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
+           
             
             if(USER!=null){
             
-            RequestDispatcher rd = request.getRequestDispatcher(request.getHeader("referer"));
-            request.setAttribute("error", "Username already taken");
-            rd.forward(request, response);
+            
+            session.setAttribute("error", "Username already taken");
+            response.sendRedirect("user/register.jsp");
+            
             }
             else{
             
@@ -66,8 +64,7 @@ public class RegisterServlet extends HttpServlet {
                 response.sendRedirect("index.jsp");
             }
             
-            out.println("</body>");
-            out.println("</html>");
+            
         }
     }
 
