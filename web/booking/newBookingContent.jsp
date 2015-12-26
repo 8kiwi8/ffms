@@ -51,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <form action="test.jsp" method="get" id="selectedTimeSlot">
+                                <form action="<c:out value="${pageContext.servletContext.contextPath}"/>/NewBookingServlet" method="get" id="selectedTimeSlot">
                                     <input type="hidden" name="selectedDate" value="<%=selectedDate%>">
                                     <c:forEach items="${spaces}" var="space">
                                         <tr>
@@ -84,17 +84,20 @@
             
             
         </div>
-
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p class="pull-left">* A selection represents 1 hour of booked time</p>
-                <input class="btn btn-success pull-right" type="submit" value="Submit" form="selectedTimeSlot">
-                
-            </div>
+        
+        <div class="alert alert-info" role="alert">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="margin-right: 7px; vertical-align: -2px;"></span>
+            A selection represents 1 hour of booked time
         </div>
+        <div class="form-group">
+            <input class="btn btn-lg btn-block btn-success" type="submit" value="Submit" form="selectedTimeSlot">
+        </div>
+        
+                
         <c:if test="${message != null}">
-            <div class="alert alert-danger alert-dismissible" role="alert">
+            <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="glyphicon glyphicon-ok-circle" aria-hidden="true" style="margin-right: 7px; vertical-align: -2px;"></span>
                 <strong>${message}</strong>
                 <c:remove var="message"/>
             </div>
@@ -127,4 +130,3 @@
             </script>
         </c:otherwise>
     </c:choose>
-</div>
