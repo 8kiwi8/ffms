@@ -9,6 +9,10 @@ import business.dao.SpaceDAO;
 import business.data.Space;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.Statement;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,25 +42,21 @@ public class AddSpaceServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String name = request.getParameter("name");
             String description = request.getParameter("description");
-            String picPath = request.getParameter("picPath");
-            double price = 0;
-            String status = null;
+            String priceS = request.getParameter("price");
+            String picPath = "-";
+            String status = "-";
+            double price ;
+            price = Double.parseDouble(priceS);
             Space space = new Space(name, description, picPath, price, status);
             SpaceDAO spaceDAO = new SpaceDAO();
-            spaceDAO.addSpace(space);
+            spaceDAO.addSpace(space);  
+              
+            RequestDispatcher dispatcher = request.getRequestDispatcher("space/manageSpace.jsp");
+            dispatcher.forward(request, response);
             
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddSpaceServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Complete!</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        } 
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
