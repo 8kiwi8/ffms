@@ -36,7 +36,7 @@ public class ListSpace extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             //State which url should the data post to
-            RequestDispatcher rd = request.getRequestDispatcher("/space/listSpace.jsp");;
+            RequestDispatcher rd = request.getRequestDispatcher("/space/listSpace.jsp");
             //DAO is used to fetch data from database
             SpaceDAO spaceDAO = new SpaceDAO();
             //Put the list of data as an attribute to be posted
