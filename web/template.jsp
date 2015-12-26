@@ -113,12 +113,13 @@
                         </div>
                         
                         <form data-toggle="validator" role="form" method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/LoginServlet">	
-                            <div class="modal-body">
+                            <div class="modal-body modal-bg">
                                 <div class="form-group">
                                     <label for="inputEmail" class="control-label">Email</label>
                                     <input type="email" class="form-control" id="inputEmail" name="inputEmail"  placeholder="Email Address" data-error="Bruh, that email address is invalid" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label for="inputPassword" class="control-label">Password</label>
                                     <div>

@@ -19,3 +19,7 @@ body {
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
 }
+
+.modal-bg {
+	background-color: #F7F7F7;
+}
