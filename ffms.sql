@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2015 at 09:03 PM
+-- Generation Time: Dec 26, 2015 at 09:18 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -128,14 +128,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `type` varchar(20) NOT NULL,
   `status` varchar(20) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`uid`, `name`, `username`, `password`, `type`, `status`) VALUES
-(1, 'test', 'test@test', 'testtest', 'admin', 'active');
+(1, 'test', 'test@test', 'testtest', 'admin', 'active'),
+(2, 'user', 'user@user', 'useruser', 'user', 'active');
 
 --
 -- Constraints for dumped tables
