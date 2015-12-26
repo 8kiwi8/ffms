@@ -80,7 +80,7 @@
                                  <button type="submit" class="btn btn-primary navbar-btn" style="margin-right:7px;"
                                     onclick="window.location.href = '${context}/user/profile.jsp'">
                                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 10px;"></span>
-                                       <% out.println(userName); %>
+                                       <% out.println(name); %>
                                 </button>
                             <% } else { %>
                                 <button type="submit" class="btn btn-primary navbar-btn" style="margin-right:7px;"
