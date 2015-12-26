@@ -5,7 +5,7 @@
     
   String userLevel = (String) session.getAttribute("type");  
   if(userLevel!=null){
-  if(!userLevel.equalsIgnoreCase("1")){
+  if(!userLevel.equalsIgnoreCase("admin")){
    response.sendRedirect("index.jsp");
    }  
   }

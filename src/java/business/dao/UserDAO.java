@@ -144,7 +144,7 @@ public class UserDAO {
             ptmt.setString(1, user.getName());
             ptmt.setString(2, user.getUsername());
             ptmt.setString(3, user.getPassword());
-            ptmt.setString(4, "2");
+            ptmt.setString(4, "user");
             ptmt.setString(5, "active");
             ptmt.executeUpdate();
         } catch (SQLException ex) {

@@ -9,6 +9,7 @@ import business.dao.UserDAO;
 import business.data.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
            
             String name = request.getParameter("inputName");
             String username = request.getParameter("inputUsername");
-            String password = request.getParameter("password");
+            String password = request.getParameter("inputPassword");
             String status = null;
             
             User user = new User(name, username, password, "user", status);
@@ -55,7 +56,9 @@ public class RegisterServlet extends HttpServlet {
             
             if(USER!=null){
             out.println("<h1>Not Complete!</h1>");
-            
+            RequestDispatcher rd = request.getRequestDispatcher(request.getHeader("referer"));
+            request.setAttribute("error", "Username already taken");
+            rd.forward(request, response);
             }
             else{
             out.println("<h1>Complete!</h1>");

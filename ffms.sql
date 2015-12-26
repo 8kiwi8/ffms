@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2015 at 05:05 AM
+-- Generation Time: Dec 26, 2015 at 03:19 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -85,4 +85,8 @@ ALTER TABLE `booking`
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+<<<<<<< HEAD
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+=======
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+>>>>>>> 7bbab32adc4a791bbe0d979b0a2fc40ce3005868
