@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2015 at 08:42 PM
+-- Generation Time: Dec 26, 2015 at 09:03 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -41,14 +41,20 @@ CREATE TABLE IF NOT EXISTS `booking` (
   KEY `fk_sid` (`sid`),
   KEY `fk_uid` (`uid`),
   KEY `fk_id` (`tid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `booking`
 --
 
 INSERT INTO `booking` (`bid`, `uid`, `sid`, `price`, `date`, `tid`, `start`, `end`, `remark`, `status`) VALUES
-(1, 1, 1, 45, '2015-12-03', 10, '2015-12-03 02:00:00', '2015-12-03 03:00:00', 'big', 'active');
+(1, 1, 1, 45, '2015-12-03', 10, '2015-12-03 02:00:00', '2015-12-03 03:00:00', 'big', 'active'),
+(2, 1, 2, 55, '2015-12-04', 11, '2015-12-04 04:00:00', '2015-12-04 05:00:00', 'small', 'active'),
+(3, 1, 3, 55, '2015-12-05', 12, '2015-12-06 11:00:00', '2015-12-06 12:00:00', 'medium', 'active'),
+(4, 1, 4, 60, '2015-12-07', 14, '2015-12-08 09:00:00', '2015-12-07 10:00:00', 'awesome', 'active'),
+(5, 1, 1, 45, '2015-12-03', 15, '2015-12-03 07:00:00', '2015-12-03 08:00:00', 'good', 'active'),
+(6, 1, 4, 60, '2015-12-03', 17, '2015-12-03 15:00:00', '2015-12-03 16:00:00', 'small a bit', 'active'),
+(7, 1, 3, 55, '2015-12-04', 20, '2015-12-04 11:00:00', '2015-12-04 13:00:00', 'large', 'active');
 
 -- --------------------------------------------------------
 
