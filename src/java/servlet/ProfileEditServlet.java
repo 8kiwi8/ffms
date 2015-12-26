@@ -56,7 +56,7 @@ public class ProfileEditServlet extends HttpServlet {
                 session.setAttribute("name", USER.getName());
                 session.setAttribute("type", USER.getType());
                 session.setAttribute("user", USER);
-                session.setMaxInactiveInterval(60*60*60);
+                session.setMaxInactiveInterval(-1);
                 response.sendRedirect("user/profileEdit.jsp");
 
             }
