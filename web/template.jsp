@@ -64,35 +64,20 @@
 
                 <div class="collapse navbar-collapse" id="navbar-collapse-main">
                     <ul class="nav navbar-nav">
-                        <% if (pageName.equals("index.jsp")||pageName.equals("adminIndex.jsp")) { %>
-                        <li class="active"><a href="${context}/<%
-                            
-                            if(userLevel!=null){
-                                if(userLevel.equalsIgnoreCase("1")){
-                                    out.println("adminIndex.jsp");
-                                }
-                                else
-                                    out.println("index.jsp");
-                            }
-                            else
-                                    out.println("index.jsp");
-                            %>">Home <span class="sr-only">(current)</span></a></li>
-                            <% } else { %>
-                        <li><a href="${context}/index.jsp">Home</a></li>
-                            <% } %>
-
-                        <% if (pageName.equals("courts.jsp")) { %>
-                        <li class="active"><a href="${context}/courts.jsp">Courts <span class="sr-only">(current)</span></a></li>
-                            <% } else { %>
-                        <li><a href="${context}/courts.jsp">Courts</a></li>
-                            <% } %>
+                        <!-- START OF LEFT-ALIGNED NAVBAR OPTIONS -->
+                        
+                        <jsp:include page="leftNavBar.jsp"/>
+                        
+                        <!-- END OF LEFT-ALIGNED NAVBAR OPTIONS -->
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
+                        <!-- START OF RIGHT-ALIGNED NAVBAR OPTIONS -->
+                        
                         <li>
                             <% if (isLoggedIn) { %>
                                  <button type="submit" class="btn btn-primary navbar-btn" style="margin-right:7px;"
-                                    onclick="window.location.href = '${pageContext.servletContext.contextPath}/user/profile.jsp'">
+                                    onclick="window.location.href = '${context}/user/profile.jsp'">
                                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 10px;"></span>
                                        <% out.println(userName); %>
                                 </button>
@@ -106,11 +91,12 @@
                         
                         <% if (isLoggedIn) { %>
                             <li>
-                            <button type="submit" class="btn btn-primary navbar-btn"style="margin-right:7px;"
-                                    onclick="window.location.href = '${pageContext.servletContext.contextPath}/LogoutServlet'">Logout</button>                           </button>
+                            <button type="submit" class="btn btn-danger navbar-btn"style="margin-right:7px;"
+                                    onclick="window.location.href = '${context}/LogoutServlet'">Logout</button>                           </button>
                             </li>
                         <% } %>
                         
+                        <!-- END OF RIGHT-ALIGNED NAVBAR OPTIONS -->
                     </ul>
                 </div>
             </nav>
