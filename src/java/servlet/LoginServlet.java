@@ -55,13 +55,13 @@ public class LoginServlet extends HttpServlet {
                 // setting cookie to expiry in 1 mins
                 uType.setMaxAge(1 * 60);
                 response.addCookie(uType);
-
+                session.setAttribute("uid", user.getUid());
                 session.setAttribute("name", user.getName());
                 session.setAttribute("type", user.getType());
                 session.setAttribute("user", user);
-                session.setMaxInactiveInterval(1*60);
+                session.setMaxInactiveInterval(60*60*60);
                 String type = (String) session.getAttribute("type");
-                if(type.equalsIgnoreCase("1")){
+                if(type.equalsIgnoreCase("admin")){
                 response.sendRedirect("adminIndex.jsp");
                 }
                 else{

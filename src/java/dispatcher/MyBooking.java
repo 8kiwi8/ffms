@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package dispatcher;
 
-import business.dao.UserDAO;
-import business.data.User;
+import business.dao.BookingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Aydil
+ * @author kingw
  */
-@WebServlet(name = "ProfileEditServlet", urlPatterns = {"/ProfileEditServlet"})
-public class ProfileEditServlet extends HttpServlet {
+@WebServlet(name = "MyBooking", urlPatterns = {"/MyBooking"})
+public class MyBooking extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,37 +34,15 @@ public class ProfileEditServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
-            
-            User user = (User) session.getAttribute("user"); 
-            String name = request.getParameter("Name");
-            //String username = request.getParameter("email");
-            String password = request.getParameter("password");
-            String status = null;
-            
-            
-            UserDAO userDAO = new UserDAO();
-            User USER=null;
-            USER = userDAO.updateUser((int) user.getUid(),name,user.getUsername(),password);
-           
-           
-            
-            if(USER!=null){
-
-                session.setAttribute("name", USER.getName());
-                session.setAttribute("type", USER.getType());
-                session.setAttribute("user", USER);
-                session.setMaxInactiveInterval(60*60*60);
-                response.sendRedirect("user/profileEdit.jsp");
-
-            }
-            else{
-                response.sendRedirect("index.jsp");
-            
-            }
-            
-          
+            //State which url should the data post to
+            RequestDispatcher rd = request.getRequestDispatcher("/booking/listBooking.jsp");
+            //DAO is used to fetch data from database
+            BookingDAO bookingDAO = new BookingDAO();
+            //Put the list of data as an attribute to be posted
+            request.setAttribute("bookings", bookingDAO.getUserBooking(Long.parseLong((String) request.getSession().getAttribute("uid"))));
+            //Post everything to the web page
+            rd.forward(request, response);
         }
     }
 

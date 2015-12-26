@@ -21,20 +21,20 @@
 <div class="row">
             	<div class="col-xs-3"></div>
                 <div class="table-responsive col-xs-6" >
-                	<form data-toggle="validator" role="form" action="<c:out value="${pageContext.servletContext.contextPath}"/>/ProfileEditServlet">   <!--TO DO Connect To UpdateUserProfileServlet And Variables2-->
+                	<form data-toggle="validator" role="form" action="<c:out value="${pageContext.servletContext.contextPath}"/>/ProfileEditServlet" method="post">   <!--TO DO Connect To UpdateUserProfileServlet And Variables2-->
 				 <div class="form-group">
 				    <label for="inputName" class="control-label">Name</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="<%out.println(user.getName());%>" required>
+                                    <input type="text" class="form-control" name="Name" id="inputName" placeholder="<%out.println(user.getName());%>" value="<%out.println(user.getName());%>" required>
 				 </div>
 				 <div class="form-group">
-				    <label for="inputEmail" class="control-label">Email</label>
-				         <input type="email" class="form-control" id="inputEmail" placeholder="<%out.println(user.getUsername());%>" data-error="Bruh, that email address is invalid" required>
+				    <label for="inputEmail"  class="control-label">Email</label>
+				         <input type="email" name="email" class="form-control" id="inputEmail" placeholder="<%out.println(user.getUsername());%>" value="<%out.println(user.getUsername());%>"data-error="Bruh, that email address is invalid" disabled>
 				             <div class="help-block with-errors"></div>
 					     </div>
                                  <div class="form-group">
 				         <label for="inputPassword" class="control-label">Password</label>
 					     <div >
-						<input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+						<input type="password" data-minlength="6" name="password" class="form-control" id="inputPassword" placeholder="Password" required>
 						     <span class="help-block">Minimum of 6 characters</span>
 					     </div>
 						 
