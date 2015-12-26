@@ -5,69 +5,44 @@
  */
 package servlet;
 
-import business.dao.UserDAO;
-import business.data.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author kingw
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "UpdateSpaceServlet", urlPatterns = {"/UpdateSpaceServlet"})
+public class UpdateSpaceServlet extends HttpServlet {
 
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession(true);
-            
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            String username = request.getParameter("inputEmail");
-            String password = request.getParameter("inputPassword");
-            
-            UserDAO userDAO = new UserDAO();
-            
-            User user = userDAO.getUser(username);
-            
-               
-            String result = "";
-            
-            if(user == null || !password.equals(user.getPassword())) {
-                
-                RequestDispatcher rd = request.getRequestDispatcher(request.getHeader("referer"));
-                request.setAttribute("error", "Wrong username or password");
-                rd.forward(request, response);
-            
-            } else {
-                
-                session.setAttribute("uid", user.getUid());
-                session.setAttribute("name", user.getName());
-                session.setAttribute("type", user.getType());
-                session.setAttribute("user", user);
-                session.setMaxInactiveInterval(-1);
-                String type = (String) session.getAttribute("type");
-                if(type.equalsIgnoreCase("admin")){
-                response.sendRedirect("adminIndex.jsp");
-                }
-                else{
-                response.sendRedirect("index.jsp");
-                
-                }
-                
-            }
-            
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet UpdateSpaceServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet UpdateSpaceServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
