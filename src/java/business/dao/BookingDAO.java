@@ -31,7 +31,7 @@ public class BookingDAO {
     
     public List<Booking> getAllBooking() {
         String query = "SELECT * FROM booking, user, space, time WHERE "
-                + "user.uid=booking.uid AND space.sid = booking.sid AND space.tid = time.tid";
+                + "user.uid=booking.uid AND space.sid = booking.sid AND booking.tid = time.tid";
         ResultSet rs = null;
         List<Booking> bookings = new ArrayList<Booking>();
         try {

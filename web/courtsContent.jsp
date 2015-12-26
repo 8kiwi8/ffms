@@ -15,7 +15,7 @@
 %>
 
 <div class="row"> <!-- Outer Row -->
-    <div class="col-xs-3">
+    <div class="col-sm-6 col-md-3 ">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Available Courts</h3>
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <div class="col-xs-6">
+    <div class="col-sm-6 col-md-6">
         <div class="panel panel-default">						
             <div class="panel-body">
                 <% if (courtNum == 1) { %>
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <div class="col-xs-3">
+    <div class="col-sm-6 col-md-3">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Court Price</h3>
@@ -102,7 +102,7 @@
         </div>
     </div>
                 
-    <div class="col-xs-6">
+    <div class="col-sm-6 col-md-3">
         <div class="panel panel-default">
             
             <div class="panel-heading">

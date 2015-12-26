@@ -31,9 +31,14 @@
 						    	</div>
 						    	
 					    </div>
-			                     <div>
-						 <button type="submit" class="btn btn-primary">Submit</button>
+			                     <div class="form-group">
+                                                 <div class="alert alert-danger alert-dismissible" role="alert" style="float:left;">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <strong>Error!</strong> Start doing some work
+                                            </div>
+						 <button type="submit" class="btn btn-primary" style="float:right;">Submit</button>
 					     </div>
+                                             
 			    </form>
 
 			</div>

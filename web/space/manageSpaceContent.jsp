@@ -5,13 +5,14 @@
 
 
 <div class="row">
-            	<div class="col-xs-3"></div>
-                <div class="table-responsive col-xs-6" >
+            	<div class="col-xs-2"></div>
+                <div class="table-responsive col-xs-8" >
                 	<h4> Space Management </h4>
+                        <div class="panel-body">
                     <table class="table">
                     	<tr> 
                     		<td>Name</td>
-                                <td>Description</td>
+                                <td width="70%"  >Description</td>
                                 <td>Price</td>
                                 <td>Update</td>
                                 <td>Delete</td>
@@ -34,8 +35,11 @@
 
     
                     </table>
+                        <div>
+                            <a href="/addSpace.jsp" class="btn btn-info" role="button">Add Space</a>
+		        </div>
 			    </div>
-			    <div class="col-xs-3"></div>
+			    <div class="col-xs-2"></div>
 			</div>
 			
 
