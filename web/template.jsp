@@ -26,6 +26,7 @@
 <html lang="en">
     <head>
         <title>FutsalNow - ${param.title}</title>
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="${context}/css/bootstrap.min.css" rel="stylesheet">
         <link href="${context}/css/bootstrap-theme.min.css" rel="stylesheet">
