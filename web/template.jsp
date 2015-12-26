@@ -45,6 +45,7 @@
         <script src="${context}/js/bootstrap.min.js"></script>
         <script src="${context}/js/validator.js"></script>
         <script src="${context}/js/validator.min.js"></script>
+        <script src="${context}/js/centeredBSmodals.js"></script>
         <div class="container" id="banner">
             <img src="${context}/img/banner.png" alt="Banner" style="width:100%;">
         </div>
@@ -84,7 +85,8 @@
                             <% } else { %>
                                 <button type="submit" class="btn btn-primary navbar-btn" style="margin-right:7px;"
                                         data-toggle='modal' data-target='#mymodal'>
-                                       Login
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 10px;"></span>
+                                    Login
                                 </button>
                             <% } %>
                         </li>
@@ -100,7 +102,8 @@
                     </ul>
                 </div>
             </nav>
-                            
+            
+            <!-- START OF LOGIN MODAL POPUP -->
             <div class="modal fade" id="mymodal" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -131,16 +134,18 @@
                             </div>
                             
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                <div style="float:left;">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                                
                                 <a class="btn btn-success" href="${pageContext.servletContext.contextPath}/user/register.jsp" role="button">Sign Up</a>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
-                            
-                            
                         </form>
                     </div>
                 </div>
             </div>
+            <!-- END OF LOGIN MODAL POPUP -->
                             
         <jsp:include page="${param.content}.jsp"/>
     </div>
