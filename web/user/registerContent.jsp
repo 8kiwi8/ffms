@@ -30,13 +30,13 @@
                                         <span class="help-block">Minimum of 6 characters</span>
                                     </div>
                                  </div>
-                                <c:if test="${error != null}">
+                                <c:if test="${errorRegister != null}">
                                     <div class="alert alert-danger alert-dismissible" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <strong>Error!</strong> ${error}
+                                        <strong>Error!</strong> ${errorRegister}
                                     </div>
                                     
-                                    <c:remove var="error" scope="session"/>
+                                    <c:remove var="errorRegister" scope="session"/>
                                 </c:if>
                                 
                                 <div class="form-group">
