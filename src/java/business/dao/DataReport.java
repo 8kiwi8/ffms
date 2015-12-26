@@ -5,7 +5,6 @@
  */
 package business.dao;
 
-import business.data.Time;
 import common.JDBCUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,30 +12,42 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  *
  * @author kingw
  */
-public class TimeDAO {
+public class DataReport {
     private Connection connection;
     private Statement statement;
     private PreparedStatement ptmt;
     
-    public List<Time> getAllTime() {
-        String query = "SELECT * FROM time";
+    public long getTotalBooking() {
+        String query = "SELECT * FROM booking";
+        return calculate(query);
+    }
+    
+    public long getTotalUser() {
+        String query = "SELECT * FROM user";
+        return calculate(query);
+    }
+    
+    public long getTotalSpace() {
+        String query = "SELECT * FROM space";
+        return calculate(query);
+    }
+    
+    private long calculate(String query) {
         ResultSet rs = null;
-        List<Time> times = new ArrayList<Time>();
+        long result = 0;
         try {
             connection = JDBCUtil.getConnection();
             statement = connection.createStatement();
             rs = statement.executeQuery(query);
             while (rs.next()) {
-                Time time = new Time();
-                time.setTid(rs.getInt("tid"));
-                time.setDescription(rs.getString("description"));
-                times.add(time);
+                ++result;
             }
         } catch (SQLException ex) {
              while (ex != null) {
@@ -52,6 +63,6 @@ public class TimeDAO {
             JDBCUtil.close(statement);
             JDBCUtil.close(connection);
         }
-        return times;
+        return result;
     }
 }
