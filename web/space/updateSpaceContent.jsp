@@ -3,6 +3,7 @@
 <div class="row">
             	<div class="col-xs-3"></div>
                 <div class="table-responsive col-xs-6" >
+                    <h4> Update Space </h4>
                 	<form id="addSpaceForm" method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/UpdateSpaceServlet">   <!--TO DO add Variables2-->
 				 <div class="form-group">
 				    <label for="inputName" class="control-label">Name</label>
@@ -16,11 +17,11 @@
 				    <label for="inputName" class="control-label">Price</label>
 				   	 <input type="textarea" class="form-control" id="inputName" placeholder="RM50" required>
 				 </div>
-                                 <div class="form-group">
+<!--                                 <div class="form-group">
                                     <label for="exampleInputFile">Upload Picture</label>
                                     <input type="file" id="exampleInputFile">
                                     <p class="help-block">Example block-level help text here.</p>
-                                 </div>
+                                 </div>-->
                             
 				
 			        <div>

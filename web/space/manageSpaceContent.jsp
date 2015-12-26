@@ -7,7 +7,7 @@
 <div class="row">
             	<div class="col-xs-3"></div>
                 <div class="table-responsive col-xs-6" >
-                	<h4> All user transactions </h4>
+                	<h4> Space Management </h4>
                     <table class="table">
                     	<tr> 
                     		<td>Name</td>
