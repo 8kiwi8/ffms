@@ -20,25 +20,24 @@
 				 </div>
 				 <div class="form-group">
 				    <label for="inputEmail" class="control-label">Email</label>
-					<input type="email" class="form-control" id="inputEmail" name="inputUsername" placeholder="Email" data-error="Bruh, that email address is invalid" required>
-					    <div class="help-block with-errors"></div>
-					    </div>
-					    <div class="form-group">
-						<label for="inputPassword" class="control-label">Password</label>
-						   	<div >
-						     	    <input type="password" data-minlength="6" name="inputPassword" class="form-control" id="inputPassword" placeholder="Password" required>
-						     	    <span class="help-block">Minimum of 6 characters</span>
-						    	</div>
-						    	
-					    </div>
-			                     <div class="form-group">
-                                                 <div class="alert alert-danger alert-dismissible" role="alert" style="float:left;">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <strong>Error!</strong> Start doing some work
-                                            </div>
-						 <button type="submit" class="btn btn-primary" style="float:right;">Submit</button>
-					     </div>
-                                             
+                                    <input type="email" class="form-control" id="inputEmail" name="inputUsername" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+                                    <div class="help-block with-errors"></div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="inputPassword" class="control-label">Password</label>
+                                    <div>
+                                        <input type="password" data-minlength="6" name="inputPassword" class="form-control" id="inputPassword" placeholder="Password" required>
+                                        <span class="help-block">Minimum of 6 characters</span>
+                                    </div>
+                                 </div>
+                                
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <strong>Error!</strong> Start doing some work
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
 			    </form>
 
 			</div>
