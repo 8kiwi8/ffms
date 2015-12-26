@@ -50,7 +50,6 @@ public class RegisterServlet extends HttpServlet {
             USER = userDAO.getUser(username);
            
            
-            
             if(USER!=null){
             
             
