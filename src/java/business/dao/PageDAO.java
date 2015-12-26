@@ -27,10 +27,10 @@ public class PageDAO {
         
         //nav admin
         pages.add(new Page("Home", "/adminIndex.jsp", "admin"));
-        pages.add(new Page("Space", "/space/manageSpace.jsp", "admin"));
+        pages.add(new Page("Space", "/ListSpace", "admin"));
         pages.add(new Page("Users", "/ListUser", "admin"));
         pages.add(new Page("Bookings", "/booking/listBooking.jsp", "admin"));
-        pages.add(new Page("Report", "/report.jsp", "admin"));
+        pages.add(new Page("Report", "/Report", "admin"));
         
         
         

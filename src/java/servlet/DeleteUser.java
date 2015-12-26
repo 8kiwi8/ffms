@@ -5,14 +5,10 @@
  */
 package servlet;
 
-import business.dao.SpaceDAO;
-import business.data.Space;
+import business.dao.UserDAO;
+import business.data.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
-import java.sql.Connection;
-import java.sql.Statement;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author kingw
+ * @author Aydil
  */
-@WebServlet(name = "AddSpaceServlet", urlPatterns = {"/AddSpaceServlet"})
-public class AddSpaceServlet extends HttpServlet {
+@WebServlet(name = "DeleteUser", urlPatterns = {"/DeleteUser"})
+public class DeleteUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,24 +35,15 @@ public class AddSpaceServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String name = request.getParameter("name");
-            String description = request.getParameter("description");
-            String priceS = request.getParameter("price");
-            String picPath = "-";
-            String status = "-";
-            double price ;
-            price = Double.parseDouble(priceS);
-            Space space = new Space(name, description, picPath, price, status);
-            SpaceDAO spaceDAO = new SpaceDAO();
-            spaceDAO.addSpace(space);  
-              
-            RequestDispatcher dispatcher = request.getRequestDispatcher("space/manageSpace.jsp");
-            dispatcher.forward(request, response);
+            String uid = request.getParameter("uid");
             
-        } 
+            UserDAO userDAO = new UserDAO();
+            
+            userDAO.deleteUser(uid);
+            response.sendRedirect("ListUser");
+        }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -15,17 +15,9 @@
     String pageName = uri.substring(uri.lastIndexOf("/") + 1);
     String name = (String) session.getAttribute("name");
     String userLevel = (String) session.getAttribute("type");
-    String userName = null;
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null) {
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("type")) {
-                userName = cookie.getValue();
-            }
-        }
-    }
     
-    if (userName != null)
+    
+    if (userLevel != null)
         isLoggedIn = true;
    
 %>

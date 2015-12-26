@@ -4,9 +4,17 @@
         <servlet-name>ProfileEditServlet</servlet-name>
         <servlet-class>servlet.ProfileEditServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteUser</servlet-name>
+        <servlet-class>servlet.DeleteUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProfileEditServlet</servlet-name>
         <url-pattern>/ProfileEditServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteUser</servlet-name>
+        <url-pattern>/DeleteUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
