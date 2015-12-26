@@ -36,7 +36,7 @@ public class ListUser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             //State which url should the data post to
-            RequestDispatcher rd = request.getRequestDispatcher("/user/listUser.jsp");;
+            RequestDispatcher rd = request.getRequestDispatcher("/user/listUser.jsp");
             //DAO is used to fetch data from database
             UserDAO userDAO = new UserDAO();
             //Put the list of data as an attribute to be posted
