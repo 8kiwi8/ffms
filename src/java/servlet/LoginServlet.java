@@ -46,9 +46,8 @@ public class LoginServlet extends HttpServlet {
             
             if(user == null || !password.equals(user.getPassword())) {
                 
-                RequestDispatcher rd = request.getRequestDispatcher(request.getHeader("referer"));
-                request.setAttribute("error", "Wrong username or password");
-                rd.forward(request, response);
+                session.setAttribute("error", "Wrong username or password");
+                response.sendRedirect("index.jsp");
             
             } else {
                 

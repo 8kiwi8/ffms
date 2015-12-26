@@ -21,7 +21,7 @@ public class PageDAO {
         //nav user
         pages.add(new Page("Home", "/index.jsp", "user"));
         pages.add(new Page("Courts", "/courts.jsp", "user"));
-        pages.add(new Page("My Bookings", "/booking/myBooking.jsp", "user"));
+        pages.add(new Page("My Bookings", "/MyBooking", "user"));
         
         
         
@@ -29,7 +29,7 @@ public class PageDAO {
         pages.add(new Page("Home", "/adminIndex.jsp", "admin"));
         pages.add(new Page("Space", "/ListSpace", "admin"));
         pages.add(new Page("Users", "/ListUser", "admin"));
-        pages.add(new Page("Bookings", "/booking/listBooking.jsp", "admin"));
+        pages.add(new Page("Bookings", "/ListBooking", "admin"));
         pages.add(new Page("Report", "/Report", "admin"));
         
         

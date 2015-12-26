@@ -36,7 +36,7 @@ public class MyBooking extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             //State which url should the data post to
-            RequestDispatcher rd = request.getRequestDispatcher("/booking/listBooking.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/booking/myBooking.jsp");
             //DAO is used to fetch data from database
             BookingDAO bookingDAO = new BookingDAO();
             //Put the list of data as an attribute to be posted
