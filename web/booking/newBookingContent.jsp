@@ -9,7 +9,7 @@
         <div class="row">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form method="get">
+                    <form method="get" id="date">
                         <div class="form-group">
                             <label for="bookingDate">Date: </label>
                             <input type="date" name="date" id="bookingDate" class="form-control" >
@@ -18,16 +18,7 @@
                         <button type="submit" class="btn btn-primary pull-right">Submit</button>
                     </form>
                 </div>
-            </div>
-            
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <strong>Selected Date:</strong><br>
-                    12/2/2016
-                </div>
-            </div>
-                
-            
+            </div>               
         </div>
     </div>
     
@@ -48,8 +39,8 @@
                     <tr>
                     <td><div class="text-center">${space.name}</div></td>
                     <c:forEach items="${times}" var="time">
+                        <c:set var="found" value="false"/>
                         <c:forEach items="${bookings}" var="booking">
-                            <c:set var="found" value="false"/>
                             <c:if test="${booking.tid == time.tid && booking.sid == space.sid}">
                                 <c:set var="found" value="true"/>
                             </c:if>
@@ -59,7 +50,7 @@
                                 <td class="danger"></td>
                             </c:when>
                             <c:otherwise>
-                                <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="${space.sid}${time.tid}"></div></td>
+                                <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="${space.sid}/${time.tid}"></div></td>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
@@ -100,6 +91,7 @@
 
                 today = yyyy + '-' + mm + '-' + dd;
                 document.getElementById("bookingDate").setAttribute("value", today);
+                document.getElementById("date").submit();
             </script>
         </c:otherwise>
     </c:choose>
