@@ -12,15 +12,15 @@
                     	
                         <tr>
                             <td>Number Of Booking</td>
-                            <td></td>
+                            <td>${booking}</td>
                         </tr>
                         <tr>
                             <td>Number Of Court </td>
-                            <td></td>
+                            <td>${space}</td>
                         </tr>
                         <tr>
                             <td>Number of Club Members</td>
-                            <td></td>
+                            <td>${user}</td>
                         </tr>
 
     

@@ -15,6 +15,8 @@ public class Booking {
     long uid;
     long sid;
     long bid;
+    int tid;
+    Date date;
     double price;
     Date start;
     Date end;
@@ -23,6 +25,7 @@ public class Booking {
     
     User user;
     Space space;
+    Time time;
     
     public Booking() {}
 
@@ -47,8 +50,23 @@ public class Booking {
         this.uid = user.getUid();
         this.sid = space.getSid();
     }
-    
 
+    public int getTid() {
+        return tid;
+    }
+
+    public void setTid(int tid) {
+        this.tid = tid;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
     public long getUid() {
         return uid;
     }
@@ -89,14 +107,32 @@ public class Booking {
 
     public void setStart(Date start) {
         this.start = start;
+        setStartTime (start);
     }
-
+    
+    public void setStartTime (Date start)
+    {
+        int hour = start.getHours();
+        int minute = start.getMinutes();
+        String startTime = Integer.toString(hour);
+        startTime += " : " + Integer.toString(minute);
+    }
+    
+    public void setEndTime (Date end)
+    {    
+        int hour = end.getHours();
+        int minute = end.getMinutes();
+        String endTime = Integer.toString(hour);
+        endTime += " : " + Integer.toString(minute);
+    }
+    
     public Date getEnd() {
         return end;
     }
 
     public void setEnd(Date end) {
         this.end = end;
+        setEndTime (end);
     }
 
     public String getRemark() {
@@ -132,4 +168,14 @@ public class Booking {
     public void setSpace(Space space) {
         this.space = space;
     }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+    
+    
 }

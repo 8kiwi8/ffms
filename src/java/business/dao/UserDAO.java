@@ -31,7 +31,7 @@ public class UserDAO {
     }
     
     public List<User> getAllUser() {
-        String query = "SELECT * FROM user";
+        String query = "SELECT * FROM user WHERE type='user' AND status='active' ";
         ResultSet rs = null;
         List<User> users = new ArrayList<User>();
         try {
@@ -165,25 +165,25 @@ public class UserDAO {
         public User updateUser(int uid,String name,String username,String password) 
         {
         String query = "SELECT * FROM user WHERE uid=" + uid;
-        String query1 = "UPDATE user SET name="+name+", username="+username+", password="+password+", type=2, status=active WHERE uid=" + uid;
+        String query1 = "UPDATE user SET name=?, username=?, password=?, type=?, status=? WHERE uid=" + uid;
         ResultSet rs = null;
        
         try 
         {
             connection = JDBCUtil.getConnection();
             statement = connection.createStatement();
-           rs = statement.executeQuery(query1);
-           rs.next();
-//   if (rs.next()) 
-        /* {
+           rs = statement.executeQuery(query);
+          
+        if (rs.next()) 
+           {
                 ptmt = connection.prepareStatement(query1);
                 ptmt.setString(1, name);
                 ptmt.setString(2, username);
                 ptmt.setString(3, password);
-                ptmt.setString(4, "2");
+                ptmt.setString(4, "user");
                 ptmt.setString(5, "active");
                 ptmt.executeUpdate();
-          }*/
+          }
         } 
         catch (SQLException ex) 
         {
@@ -206,14 +206,29 @@ public class UserDAO {
         return this.getUser(uid);
     }
         
-    public void deleteUser(int uid) {
-        try {
+    public void deleteUser(String uid) {
+        String query = "SELECT * FROM user WHERE uid=" + uid;
+        String query1 = "UPDATE user SET status=? WHERE uid=" + uid;
+        ResultSet rs = null;
+       
+        try 
+        {
             connection = JDBCUtil.getConnection();
-            String query = "DELETE FROM user WHERE uid=" + uid;
-            ptmt = connection.prepareStatement(query);
-            ptmt.executeUpdate();
-        } catch (SQLException ex) {
-             while (ex != null) {
+            statement = connection.createStatement();
+           rs = statement.executeQuery(query);
+          
+        if (rs.next()) 
+           {
+                ptmt = connection.prepareStatement(query1);
+                
+                ptmt.setString(1, "inactive");
+                ptmt.executeUpdate();
+          }
+        } 
+        catch (SQLException ex) 
+        {
+             while (ex != null) 
+             {
                 System.out.println ("SQLState: " + ex.getSQLState ());
                 System.out.println ("Message:  " + ex.getMessage ());
                 System.out.println ("Vendor:   " + ex.getErrorCode ());
@@ -221,8 +236,11 @@ public class UserDAO {
                 System.out.println ("");
             }
             System.out.println("Connection to the database error");
-        } finally {
-            JDBCUtil.close(ptmt);
+        } 
+        finally 
+        {
+            JDBCUtil.close(rs);
+            JDBCUtil.close(statement);
             JDBCUtil.close(connection);
         }
     }

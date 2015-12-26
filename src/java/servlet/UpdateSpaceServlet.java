@@ -5,8 +5,6 @@
  */
 package servlet;
 
-import business.dao.UserDAO;
-import business.data.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,14 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Aydil
+ * @author kingw
  */
-@WebServlet(name = "ProfileEditServlet", urlPatterns = {"/ProfileEditServlet"})
-public class ProfileEditServlet extends HttpServlet {
+@WebServlet(name = "UpdateSpaceServlet", urlPatterns = {"/UpdateSpaceServlet"})
+public class UpdateSpaceServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,37 +32,17 @@ public class ProfileEditServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
-            
-            User user = (User) session.getAttribute("user"); 
-            String name = request.getParameter("Name");
-            //String username = request.getParameter("email");
-            String password = request.getParameter("password");
-            String status = null;
-            
-            
-            UserDAO userDAO = new UserDAO();
-            User USER=null;
-            USER = userDAO.updateUser((int) user.getUid(),name,user.getUsername(),password);
-           
-           
-            
-            if(USER!=null){
-
-                session.setAttribute("name", USER.getName());
-                session.setAttribute("type", USER.getType());
-                session.setAttribute("user", USER);
-                session.setMaxInactiveInterval(-1);
-                response.sendRedirect("user/profileEdit.jsp");
-
-            }
-            else{
-                response.sendRedirect("index.jsp");
-            
-            }
-            
-          
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet UpdateSpaceServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet UpdateSpaceServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

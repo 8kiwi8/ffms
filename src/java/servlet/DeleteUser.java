@@ -14,14 +14,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Aydil
  */
-@WebServlet(name = "ProfileEditServlet", urlPatterns = {"/ProfileEditServlet"})
-public class ProfileEditServlet extends HttpServlet {
+@WebServlet(name = "DeleteUser", urlPatterns = {"/DeleteUser"})
+public class DeleteUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,37 +34,13 @@ public class ProfileEditServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
-            
-            User user = (User) session.getAttribute("user"); 
-            String name = request.getParameter("Name");
-            //String username = request.getParameter("email");
-            String password = request.getParameter("password");
-            String status = null;
-            
+            String uid = request.getParameter("uid");
             
             UserDAO userDAO = new UserDAO();
-            User USER=null;
-            USER = userDAO.updateUser((int) user.getUid(),name,user.getUsername(),password);
-           
-           
             
-            if(USER!=null){
-
-                session.setAttribute("name", USER.getName());
-                session.setAttribute("type", USER.getType());
-                session.setAttribute("user", USER);
-                session.setMaxInactiveInterval(-1);
-                response.sendRedirect("user/profileEdit.jsp");
-
-            }
-            else{
-                response.sendRedirect("index.jsp");
-            
-            }
-            
-          
+            userDAO.deleteUser(uid);
+            response.sendRedirect("ListUser");
         }
     }
 

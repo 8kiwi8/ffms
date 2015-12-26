@@ -15,17 +15,9 @@
     String pageName = uri.substring(uri.lastIndexOf("/") + 1);
     String name = (String) session.getAttribute("name");
     String userLevel = (String) session.getAttribute("type");
-    String userName = null;
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null) {
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("type")) {
-                userName = cookie.getValue();
-            }
-        }
-    }
     
-    if (userName != null)
+    
+    if (userLevel != null)
         isLoggedIn = true;
    
 %>
@@ -80,7 +72,7 @@
                                  <button type="submit" class="btn btn-primary navbar-btn" style="margin-right:7px;"
                                     onclick="window.location.href = '${context}/user/profile.jsp'">
                                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 10px;"></span>
-                                       <% out.println(userName); %>
+                                       <% out.println(name); %>
                                 </button>
                             <% } else { %>
                                 <button type="submit" class="btn btn-primary navbar-btn" style="margin-right:7px;"
@@ -113,12 +105,13 @@
                         </div>
                         
                         <form data-toggle="validator" role="form" method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/LoginServlet">	
-                            <div class="modal-body">
+                            <div class="modal-body modal-bg">
                                 <div class="form-group">
                                     <label for="inputEmail" class="control-label">Email</label>
                                     <input type="email" class="form-control" id="inputEmail" name="inputEmail"  placeholder="Email Address" data-error="Bruh, that email address is invalid" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label for="inputPassword" class="control-label">Password</label>
                                     <div>

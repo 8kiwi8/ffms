@@ -3,25 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package dispatcher;
 
-import business.dao.UserDAO;
-import business.data.User;
+import business.dao.BookingDAO;
+import business.dao.SpaceDAO;
+import business.dao.TimeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Aydil
+ * @author kingw
  */
-@WebServlet(name = "ProfileEditServlet", urlPatterns = {"/ProfileEditServlet"})
-public class ProfileEditServlet extends HttpServlet {
+@WebServlet(name = "NewBooking", urlPatterns = {"/NewBooking"})
+public class NewBooking extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,37 +42,31 @@ public class ProfileEditServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(true);
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            RequestDispatcher rd = request.getRequestDispatcher("/booking/newBooking.jsp");
+            //DAO is used to fetch data from database
+            SpaceDAO spaceDAO = new SpaceDAO();
+            TimeDAO timeDAO = new TimeDAO();
+            BookingDAO bookingDAO = new BookingDAO();
+            //Put the list of data as an attribute to be posted
+            request.setAttribute("spaces", spaceDAO.getAllSpace());
+            request.setAttribute("times", timeDAO.getAllTime());
             
-            User user = (User) session.getAttribute("user"); 
-            String name = request.getParameter("Name");
-            //String username = request.getParameter("email");
-            String password = request.getParameter("password");
-            String status = null;
-            
-            
-            UserDAO userDAO = new UserDAO();
-            User USER=null;
-            USER = userDAO.updateUser((int) user.getUid(),name,user.getUsername(),password);
-           
-           
-            
-            if(USER!=null){
-
-                session.setAttribute("name", USER.getName());
-                session.setAttribute("type", USER.getType());
-                session.setAttribute("user", USER);
-                session.setMaxInactiveInterval(-1);
-                response.sendRedirect("user/profileEdit.jsp");
-
+            Date date;
+            if(request.getParameter("date")!= null && !request.getParameter("date").equals("")) {
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                date = format.parse(request.getParameter("date"));
+            } else {
+                date = new Date();
             }
-            else{
-                response.sendRedirect("index.jsp");
+            System.out.print(date);
+            request.setAttribute("bookings", bookingDAO.getBooking(date));
             
-            }
-            
-          
+            //Post everything to the web page
+            rd.forward(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(NewBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -109,3 +110,4 @@ public class ProfileEditServlet extends HttpServlet {
     }// </editor-fold>
 
 }
+
