@@ -49,28 +49,23 @@ public class ProfileEditServlet extends HttpServlet {
             User USER=null;
             USER = userDAO.updateUser((int) user.getUid(),name,user.getUsername(),password);
            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddUserServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
+           
             
             if(USER!=null){
-            out.println("<h1>Not Complete!</h1>");
-            out.println("<p>"+name+"</p>");
-            //out.println("<p>"+username+"</p>");
-            out.println("<p>"+password+"</p>");
-            
-            
+
+                session.setAttribute("name", USER.getName());
+                session.setAttribute("type", USER.getType());
+                session.setAttribute("user", USER);
+                session.setMaxInactiveInterval(60*60*60);
+                response.sendRedirect("user/profileEdit.jsp");
+
             }
             else{
-            out.println("<h1>Complete!</h1>");
+                response.sendRedirect("index.jsp");
             
             }
             
-            out.println("</body>");
-            out.println("</html>");
+          
         }
     }
 
