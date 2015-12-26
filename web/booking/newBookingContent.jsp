@@ -3,29 +3,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%
-    
-    DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-    String formattedDate = df.format(df);
-    
-    String dateOfBooking;
-    String dd;
-    String mm;
-    String yyyy;
-    
-    // yyyy-mm-dd
-    if (request.getParameter("date") != null) {
-        dateOfBooking = request.getParameter("date");
-    
-        dd = dateOfBooking.substring(8, 10);
-        mm = dateOfBooking.substring(5, 7);
-        yyyy = dateOfBooking.substring(0, 4);
-    }
-    
-%>
-
-
-
 <div class="row">
     
     <div class="col-xs-2">
@@ -39,14 +16,15 @@
                             <input type="date" name="date" id="bookingDate" class="form-control" >
                         </div>
 
-                        <button type="submit" class="btn btn-default pull-right">Submit</button>
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
                     </form>
                 </div>
             </div>
             
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <strong>Selected Date:</strong> <%=dd%>/<%=mm%>/<%=yyyy%>
+                    <strong>Selected Date:</strong><br>
+                    12/2/2016
                 </div>
             </div>
                 
@@ -80,20 +58,24 @@
 
                 <tr>
                     <td><div class="text-center">1</div></td>
+                    <% if (10 timeslot exists for court 1 in table booking) { %>
+                        <td class="danger"></td>
+                    <% } else { %>
+                        <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="10"></div></td>
+                    <% } %>
                     <td class="danger"></td>
+                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="12"></div></td>
+                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="13"></div></td>
                     <td class="danger"></td>
-                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="112"></div></td>
-                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="113"></div></td>
-                    <td class="danger"></td>
-                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="115"></div></td>
-                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="116"></div></td>
-                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="117"></div></td>
-                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="118"></div></td>
-                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="119"></div></td>
-                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="120"></div></td>
+                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="15"></div></td>
+                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="16"></div></td>
+                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="17"></div></td>
+                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="18"></div></td>
+                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="19"></div></td>
+                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="20"></div></td>
                     <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="21"></div></td>
-                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="122"></div></td>
-                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="123"></div></td>
+                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="22"></div></td>
+                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="23"></div></td>
                 </tr>
 
                 <tr>
@@ -156,7 +138,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <p class="pull-left">* A selection represents 1 hour of booked time</p>
-                <input class="btn btn-default pull-right" type="submit" value="Submit">
+                <input class="btn btn-success pull-right" type="submit" value="Submit">
             </div>
         </div>
 
