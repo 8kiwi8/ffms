@@ -10,9 +10,9 @@
         selectedDate = request.getParameter("date");
 %>
 
-<div class="row">
+
     
-    <div class="col-xs-2">
+    <div class="col-xs-12 col-sm-3 col-lg-2">
         
         <div class="row">
             <div class="panel panel-default">
@@ -31,7 +31,7 @@
     </div>
     
 
-    <div class="col-xs-10">
+    <div class="col-xs-12 col-sm-9 col-lg-10">
         <div class="panel panel-default">
             <c:choose>
                 <c:when test="${empty param.date}">
@@ -39,44 +39,46 @@
                 </c:when>
                 
                 <c:otherwise>
-                    <!-- Start TABLE -->
-                    <table class="table table-hover table-bordered table-condensed">
-                        <thead>
-                            <tr>
-                                <th><div class="text-center">Court</div></th>
-                                <c:forEach items="${times}" var="time">
-                                   <th><div class="text-center">${time.description}</div></th> 
-                                </c:forEach>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <form action="test.jsp" method="get" id="selectedTimeSlot">
-                                <input type="hidden" name="selectedDate" value="<%=selectedDate%>">
-                                <c:forEach items="${spaces}" var="space">
-                                    <tr>
-                                        <td><div class="text-center">${space.name}</div></td>
-                                        <c:forEach items="${times}" var="time">
-                                            <c:set var="found" value="false"/>
-                                            <c:forEach items="${bookings}" var="booking">
-                                                <c:if test="${booking.tid == time.tid && booking.sid == space.sid}">
-                                                    <c:set var="found" value="true"/>
-                                                </c:if>
+                    <div class="table-responsive">
+                        <!-- Start TABLE -->
+                        <table class="table table-hover table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                    <th><div class="text-center">Court</div></th>
+                                    <c:forEach items="${times}" var="time">
+                                       <th><div class="text-center">${time.description}</div></th> 
+                                    </c:forEach>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <form action="test.jsp" method="get" id="selectedTimeSlot">
+                                    <input type="hidden" name="selectedDate" value="<%=selectedDate%>">
+                                    <c:forEach items="${spaces}" var="space">
+                                        <tr>
+                                            <td><div class="text-center">${space.name}</div></td>
+                                            <c:forEach items="${times}" var="time">
+                                                <c:set var="found" value="false"/>
+                                                <c:forEach items="${bookings}" var="booking">
+                                                    <c:if test="${booking.tid == time.tid && booking.sid == space.sid}">
+                                                        <c:set var="found" value="true"/>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <c:choose>
+                                                    <c:when test="${found == 'true'}">
+                                                        <td class="danger"></td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="${space.sid}-${time.tid}"></div></td>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </c:forEach>
-                                            <c:choose>
-                                                <c:when test="${found == 'true'}">
-                                                    <td class="danger"></td>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <td class="success"><div class="text-center"><input type="radio" name="selectedTime" value="${space.sid}-${time.tid}"></div></td>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
-                                    </tr>
-                                </c:forEach>
-                            </form>
-                        </tbody>
-                    </table>
-                    <!-- End TABLE -->
+                                        </tr>
+                                    </c:forEach>
+                                </form>
+                            </tbody>
+                        </table>
+                        <!-- End TABLE -->
+                    </div>
                 </c:otherwise>
             </c:choose>
             
