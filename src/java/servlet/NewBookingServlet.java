@@ -59,7 +59,7 @@ public class NewBookingServlet extends HttpServlet {
             booking.setStatus("Pending");
             BookingDAO bookingDAO = new BookingDAO();
             bookingDAO.newBooking(booking);
-            request.getSession().setAttribute("message", "You have succefully make the booking");
+            request.getSession().setAttribute("message", "You have successfully booked the timeslot");
             response.sendRedirect(request.getHeader("Referer"));
         } catch (ParseException ex) {
             Logger.getLogger(NewBookingServlet.class.getName()).log(Level.SEVERE, null, ex);

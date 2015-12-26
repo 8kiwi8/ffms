@@ -3,15 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package dispatcher;
 
 import business.dao.SpaceDAO;
-import business.data.Space;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
-import java.sql.Connection;
-import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kingw
  */
-@WebServlet(name = "AddSpaceServlet", urlPatterns = {"/AddSpaceServlet"})
-public class AddSpaceServlet extends HttpServlet {
+@WebServlet(name = "UpdateSpace", urlPatterns = {"/UpdateSpace"})
+public class UpdateSpace extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,22 +36,14 @@ public class AddSpaceServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String name = request.getParameter("name");
-            String description = request.getParameter("description");
-            String priceS = request.getParameter("price");
-            String picPath = "-";
-            String status = "active";
-            double price ;
-            price = Double.parseDouble(priceS);
-            Space space = new Space(name, description, picPath, price, status);
+            RequestDispatcher rd = request.getRequestDispatcher("/space/updateSpace.jsp");
+            long sid = Long.parseLong(request.getParameter("sid"));
             SpaceDAO spaceDAO = new SpaceDAO();
-            spaceDAO.addSpace(space);  
-              
-            response.sendRedirect(request.getContextPath() + "/ListSpace");
-            
-        } 
+            request.setAttribute("space", spaceDAO.getSpace(sid));
+            rd.forward(request, response);
+        }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
