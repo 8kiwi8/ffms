@@ -24,11 +24,11 @@
                 	<form data-toggle="validator" role="form" action="<c:out value="${pageContext.servletContext.contextPath}"/>/ProfileEditServlet">   <!--TO DO Connect To UpdateUserProfileServlet And Variables2-->
 				 <div class="form-group">
 				    <label for="inputName" class="control-label">Name</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="<%out.println(user.getName());%>" required>
+                                    <input type="text" class="form-control" id="inputName" placeholder="<%out.println(user.getName());%>" value="<%out.println(user.getName());%>" required>
 				 </div>
 				 <div class="form-group">
 				    <label for="inputEmail" class="control-label">Email</label>
-				         <input type="email" class="form-control" id="inputEmail" placeholder="<%out.println(user.getUsername());%>" data-error="Bruh, that email address is invalid" required>
+				         <input type="email" class="form-control" id="inputEmail" placeholder="<%out.println(user.getUsername());%>" value="<%out.println(user.getUsername());%>"data-error="Bruh, that email address is invalid" disabled>
 				             <div class="help-block with-errors"></div>
 					     </div>
                                  <div class="form-group">
