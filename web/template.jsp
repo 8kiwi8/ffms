@@ -9,6 +9,8 @@
 <c:set var="context" value="${pageContext.request.contextPath}" />
 
 <%
+    boolean isLoggedIn = false;
+    
     String uri = request.getRequestURI();
     String pageName = uri.substring(uri.lastIndexOf("/") + 1);
     String name = (String) session.getAttribute("name");
@@ -22,6 +24,9 @@
             }
         }
     }
+    
+    if (userName != null)
+        isLoggedIn = true;
    
 %>
 
@@ -85,43 +90,43 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a > <span class="glyphicon glyphicon-user" style="padding-right:10px;" ></span>
-                                <button type="submit" class="btn btn-primary" <% 
-                                if (userName != null) {
-                                   out.println("data-toggle='modal' data-target='#mymodal' >");
-                                   out.println(userName);
-                                } else {
-                                    out.println("data-toggle='modal' data-target='#mymodal' >");
-                                    
-                                    out.println("Login");
-                                }
-
-                                %>
-                            </button>
-                            <button type="submit" class="btn btn-primary" onclick="window.location.href = '${pageContext.servletContext.contextPath}/LogoutServlet'"
-                                    <%                                                if (userName == null) {
-                                            out.println("style='visibility:hidden;'>Logout");
-                                        } else {
-                                            out.println(">Logout");
-                                        }
-                                    %>
-                            </button>
-                            </a>
+                            <% if (isLoggedIn) { %>
+                                 <button type="submit" class="btn btn-primary navbar-btn" style="margin-right:7px;"
+                                    onclick="window.location.href = '${pageContext.servletContext.contextPath}/user/profile.jsp'">
+                                       <span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right: 10px;"></span>
+                                       <% out.println(userName); %>
+                                </button>
+                            <% } else { %>
+                                <button type="submit" class="btn btn-primary navbar-btn" style="margin-right:7px;"
+                                        data-toggle='modal' data-target='#mymodal'>
+                                       Login
+                                </button>
+                            <% } %>
                         </li>
+                        
+                        <% if (isLoggedIn) { %>
+                            <li>
+                            <button type="submit" class="btn btn-primary navbar-btn"style="margin-right:7px;"
+                                    onclick="window.location.href = '${pageContext.servletContext.contextPath}/LogoutServlet'">Logout</button>                           </button>
+                            </li>
+                        <% } %>
+                        
                     </ul>
                 </div>
             </nav>
+                            
             <div class="modal fade" id="mymodal" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3> Login </h3>
+                            <h4 class="modal-title">Login</h4>
                         </div>
+                        
                         <form data-toggle="validator" role="form" method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/LoginServlet">	
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="inputEmail" class="control-label">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" name="inputEmail"  placeholder="inputEmail" data-error="Bruh, that email address is invalid" required>
+                                    <input type="email" class="form-control" id="inputEmail" name="inputEmail"  placeholder="Email Address" data-error="Bruh, that email address is invalid" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
@@ -131,16 +136,25 @@
                                         <span class="help-block">Minimum of 6 characters</span>
                                     </div>
                                 </div>
+                                
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <strong>Error!</strong> Start doing some work
+                                </div>
                             </div>
+                            
                             <div class="modal-footer">
-                                <a class="btn btn-default" href="register.jsp" role="button">SignUp</a>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-default">Submit</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-success" href="${pageContext.servletContext.contextPath}/user/register.jsp" role="button">Sign Up</a>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
+                            
+                            
                         </form>
                     </div>
                 </div>
             </div>
+                            
         <jsp:include page="${param.content}.jsp"/>
     </div>
 </body>
