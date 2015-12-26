@@ -22,7 +22,7 @@ public class PageDAO {
         pages.add(new Page("Home", "/index.jsp", "user"));
         pages.add(new Page("Courts", "/courts.jsp", "user"));
         pages.add(new Page("My Bookings", "/booking/myBooking.jsp", "user"));
-        pages.add(new Page("Profile", "/user/profile.jsp", "user"));
+        
         
         
         //nav admin
