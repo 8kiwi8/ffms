@@ -18,7 +18,7 @@
                                 <td>End Time</td>
                                 <td>Price </td>
                                 <td>Remark</td>
-                                <td> Delete Booking?</td>
+                                <td> Confirmation</td>
                     	</tr>
                         <c:forEach items="${bookings}" var="booking">
                     	<tr> 
