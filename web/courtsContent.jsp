@@ -37,12 +37,7 @@
             </div>
 
             <div class="panel-body">
-                <div class="btn-group-vertical center-block" role="group" aria-label="Book Court">
-                    <button type="button" class="btn btn-success">Court 1</button>
-                    <button type="button" class="btn btn-success">Court 2</button>
-                    <button type="button" class="btn btn-success">Court 3</button>
-                    <button type="button" class="btn btn-success">Court 4</button>
-                </div>
+                <a class="btn btn-success btn-lg btn-block" href="NewBooking" role="button">View Timeslots</a>
             </div>
         </div>
     </div>
