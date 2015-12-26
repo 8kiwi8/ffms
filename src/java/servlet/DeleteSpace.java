@@ -39,7 +39,7 @@ public class DeleteSpace extends HttpServlet {
             
             SpaceDAO spaceDAO = new SpaceDAO();
             
-            spaceDAO.deleteSpace(Long.parseLong(sid));
+            spaceDAO.deactivateSpace(Long.parseLong(sid));
             response.sendRedirect("ListSpace");
         }
     }

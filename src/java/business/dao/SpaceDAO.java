@@ -25,7 +25,7 @@ public class SpaceDAO {
     private PreparedStatement ptmt;
     
     public List<Space> getAllSpace() {
-        String query = "SELECT * FROM space";
+        String query = "SELECT * FROM space WHERE status='active'";
         ResultSet rs = null;
         List<Space> spaces = new ArrayList<Space>();
         try {
@@ -120,12 +120,11 @@ public class SpaceDAO {
         }
     }
     
-    public Space updateSpace(long sid) 
+    public Space updateSpace(long sid, Space space) 
     {
-        String query = "SELECT * FROM user WHERE sid=" + sid;
+        String query = "SELECT * FROM space WHERE sid=" + sid;
         String query1 = "UPDATE space SET name=?, description=?, picPath=?, price=?, status=? WHERE sid=" + sid;
         ResultSet rs = null;
-        Space space = null;
         try
         {
             connection = JDBCUtil.getConnection();
@@ -133,7 +132,6 @@ public class SpaceDAO {
             rs = statement.executeQuery(query);
             if (rs.next())
             {
-                space = new Space ();
                 ptmt = connection.prepareStatement(query1);
                 ptmt.setString(1, space.getName());
                 ptmt.setString(2, space.getDescription());
@@ -163,12 +161,48 @@ public class SpaceDAO {
         return space;
     }
     
+    public void deactivateSpace(long sid) 
+    {
+        String query = "SELECT * FROM space WHERE sid=" + sid;
+        String query1 = "UPDATE space SET status=? WHERE sid=" + sid;
+        try
+        {
+            connection = JDBCUtil.getConnection();
+            statement = connection.createStatement();
+            ResultSet rs = null;
+            rs = statement.executeQuery(query);
+            if (rs.next())
+            {
+                ptmt = connection.prepareStatement(query1);
+                ptmt.setString(1, "inactive");
+                ptmt.executeUpdate();
+            } 
+        }
+        catch (SQLException ex) 
+        {
+             while (ex != null) 
+             {
+                System.out.println ("SQLState: " + ex.getSQLState ());
+                System.out.println ("Message:  " + ex.getMessage ());
+                System.out.println ("Vendor:   " + ex.getErrorCode ());
+                ex = ex.getNextException();
+                System.out.println ("");
+            }
+            System.out.println("Connection to the database error");
+        }
+        finally 
+        {
+            JDBCUtil.close(ptmt);
+            JDBCUtil.close(connection);
+        }
+    }
+    
     public void deleteSpace(long sid) 
     {
         try 
         {
             connection = JDBCUtil.getConnection();
-            String query = "DELETE FROM space WHERE uid=" + sid;
+            String query = "DELETE FROM space WHERE sid=" + sid;
             ptmt = connection.prepareStatement(query);
             ptmt.executeUpdate();
         } 

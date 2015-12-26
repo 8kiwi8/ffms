@@ -5,6 +5,8 @@
  */
 package servlet;
 
+import business.dao.SpaceDAO;
+import business.data.Space;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,15 +36,14 @@ public class UpdateSpaceServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateSpaceServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateSpaceServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            SpaceDAO spaceDAO = new SpaceDAO();
+            long sid = Long.parseLong(request.getParameter("sid"));
+            Space space = spaceDAO.getSpace(sid);
+            space.setName(request.getParameter("name"));
+            space.setDescription(request.getParameter("description"));
+            space.setPrice(Double.parseDouble(request.getParameter("price")));
+            spaceDAO.updateSpace(sid, space);
+            response.sendRedirect(request.getContextPath() + "/ListSpace");
         }
     }
 
