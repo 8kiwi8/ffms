@@ -119,11 +119,16 @@
                                         <span class="help-block">Minimum of 6 characters</span>
                                     </div>
                                 </div>
-                                
-                                <div class="alert alert-danger alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <strong>Error!</strong> Start doing some work
-                                </div>
+                                <c:if test="${error != null}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Error!</strong> ${error}
+                                    </div>
+                                    <script>
+                                    $('#mymodal').modal('show');
+                                    </script>
+                                    <c:remove var="error" scope="session"/>
+                                </c:if>
                             </div>
                             
                             <div class="modal-footer">
