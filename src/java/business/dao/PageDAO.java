@@ -22,12 +22,11 @@ public class PageDAO {
         pages.add(new Page("Home", "/index.jsp", "user"));
         pages.add(new Page("Courts", "/courts.jsp", "user"));
         pages.add(new Page("My Bookings", "/booking/myBooking.jsp", "user"));
-        pages.add(new Page("Profile", "/user/profile.jsp", "user"));
+        
         
         
         //nav admin
         pages.add(new Page("Home", "/adminIndex.jsp", "admin"));
-        pages.add(new Page("Courts", "/courts.jsp", "admin"));
         pages.add(new Page("Space", "/space/manageSpace.jsp", "admin"));
         pages.add(new Page("Users", "/user/listUser.jsp", "admin"));
         pages.add(new Page("Bookings", "/booking/listBooking.jsp", "admin"));

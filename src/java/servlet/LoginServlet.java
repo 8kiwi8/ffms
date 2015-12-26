@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("name", user.getName());
                 session.setAttribute("type", user.getType());
                 session.setAttribute("user", user);
-                session.setMaxInactiveInterval(60*60*60);
+                session.setMaxInactiveInterval(-1);
                 String type = (String) session.getAttribute("type");
                 if(type.equalsIgnoreCase("admin")){
                 response.sendRedirect("adminIndex.jsp");
