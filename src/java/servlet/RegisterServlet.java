@@ -55,14 +55,15 @@ public class RegisterServlet extends HttpServlet {
             out.println("<body>");
             
             if(USER!=null){
-            out.println("<h1>Not Complete!</h1>");
+            
             RequestDispatcher rd = request.getRequestDispatcher(request.getHeader("referer"));
             request.setAttribute("error", "Username already taken");
             rd.forward(request, response);
             }
             else{
-            out.println("<h1>Complete!</h1>");
-            userDAO.addUser(user);
+            
+                userDAO.addUser(user);  
+                response.sendRedirect("index.jsp");
             }
             
             out.println("</body>");

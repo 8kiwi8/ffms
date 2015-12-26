@@ -52,8 +52,8 @@ public class LoginServlet extends HttpServlet {
             
             } else {
                 Cookie uType = new Cookie("type", user.getName());
-                // setting cookie to expiry in 1 mins
-                uType.setMaxAge(1 * 60);
+                
+                uType.setMaxAge(-1);
                 response.addCookie(uType);
                 session.setAttribute("uid", user.getUid());
                 session.setAttribute("name", user.getName());
