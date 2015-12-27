@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="row"> <!-- Outer Row -->
-    <div class="col-xs-3 ">
+    <div class="col-sm-4 col-md-4 ">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Booking</h3>
@@ -35,7 +35,7 @@
     </div>
     <c:choose>
         <c:when test="${not empty param.sid}">
-            <div class="col-xs-9">
+            <div class="col-sm-8 col-md-8 ">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Court Details</h3>
@@ -51,7 +51,7 @@
             </div>
         </c:when>
         <c:otherwise>
-            <div class="col-xs-9">
+            <div class="col-sm-8 col-md-8 ">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h1 class="panel-title">Pick the available space!</h3>
