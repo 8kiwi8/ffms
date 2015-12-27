@@ -51,7 +51,7 @@ public class AddSpaceServlet extends HttpServlet {
             SpaceDAO spaceDAO = new SpaceDAO();
             spaceDAO.addSpace(space);  
               
-            response.sendRedirect(request.getContextPath() + "/ListSpace");
+            response.sendRedirect(request.getContextPath() + "/ListSpace.jsp");
             
         } 
     }

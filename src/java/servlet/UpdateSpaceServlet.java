@@ -43,7 +43,7 @@ public class UpdateSpaceServlet extends HttpServlet {
             space.setDescription(request.getParameter("description"));
             space.setPrice(Double.parseDouble(request.getParameter("price")));
             spaceDAO.updateSpace(sid, space);
-            response.sendRedirect(request.getContextPath() + "/ListSpace");
+            response.sendRedirect(request.getContextPath() + "/ListSpace.jsp");
         }
     }
 

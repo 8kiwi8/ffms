@@ -49,8 +49,10 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("error", "Wrong username or password");
                 response.sendRedirect("index.jsp");
             
+            } else if(!user.getStatus().equals("active")) { 
+                session.setAttribute("error", "You had been banned, Please contact the administrator.");
+                response.sendRedirect("index.jsp");
             } else {
-                
                 session.setAttribute("uid", user.getUid());
                 session.setAttribute("name", user.getName());
                 session.setAttribute("type", user.getType());

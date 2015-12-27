@@ -15,7 +15,7 @@
             </div>
 
             <div class="panel-body">
-                <a class="btn btn-success btn-lg btn-block" href="NewBooking" role="button">Book a Court Now!</a>
+                <a class="btn btn-success btn-lg btn-block" href="NewBooking.jsp" role="button">Book a Court Now!</a>
             </div>
         </div>
         
@@ -27,7 +27,7 @@
             <div class="panel-body">
                 <div class="btn-group-vertical center-block" role="group" aria-label="Court Details">
                     <c:forEach items="${spaces}" var="space">
-                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/Courts?sid=${space.sid}" role="button">${space.name} (RM${space.price})</a>
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/Courts.jsp?sid=${space.sid}" role="button">${space.name} (RM${space.price})</a>
                     </c:forEach>
                 </div>
             </div>

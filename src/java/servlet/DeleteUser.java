@@ -40,7 +40,7 @@ public class DeleteUser extends HttpServlet {
             UserDAO userDAO = new UserDAO();
             
             userDAO.deleteUser(uid);
-            response.sendRedirect("ListUser");
+            response.sendRedirect("ListUser.jsp");
         }
     }
 

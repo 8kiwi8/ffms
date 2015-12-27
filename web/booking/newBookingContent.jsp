@@ -103,7 +103,7 @@
             A selection represents 1 hour of booked time
         </div>
         <div class="form-group">
-            <input class="btn btn-lg btn-block btn-success" type="submit" value="Submit" form="selectedTimeSlot">
+            <input class="btn btn-lg btn-block btn-success" type="submit" value="Book Now" form="selectedTimeSlot">
         </div>
     </div>
     <c:choose>

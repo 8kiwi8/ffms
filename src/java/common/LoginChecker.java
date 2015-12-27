@@ -116,6 +116,7 @@ public class LoginChecker implements Filter {
         String name = (String) session.getAttribute("name");
         String[] urls = {
             httpRequest.getContextPath() + "/index.jsp",
+            httpRequest.getContextPath() + "/user/register.jsp",
             httpRequest.getContextPath() + "/"
         };
 
