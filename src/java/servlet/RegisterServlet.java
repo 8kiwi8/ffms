@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 
 /**
  *
@@ -44,7 +45,10 @@ public class RegisterServlet extends HttpServlet {
             String password = request.getParameter("inputPassword");
             String status = null;
             
-            User user = new User(name, username, password, "user", "active");
+            StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+            String encryptedPassword = passwordEncryptor.encryptPassword(password);
+            
+            User user = new User(name, username, encryptedPassword, "user", "active");
             UserDAO userDAO = new UserDAO();
             User USER;
             USER = userDAO.getUser(username);

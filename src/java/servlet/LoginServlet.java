@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 
 /**
  *
@@ -41,30 +42,35 @@ public class LoginServlet extends HttpServlet {
             
             User user = userDAO.getUser(username);
             
-               
             String result = "";
             
-            if(user == null || !password.equals(user.getPassword())) {
-                
-                session.setAttribute("error", "Wrong username or password");
-                response.sendRedirect("index.jsp");
+            StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
             
-            } else if(!user.getStatus().equals("active")) { 
+            if(user == null || !passwordEncryptor.checkPassword(password, user.getPassword())) 
+            {            
+                session.setAttribute("error", "Wrong username or password");
+                response.sendRedirect("index.jsp");     
+            } 
+            else if(!user.getStatus().equals("active")) 
+            { 
                 session.setAttribute("error", "You had been banned, Please contact the administrator.");
                 response.sendRedirect("index.jsp");
-            } else {
+            } 
+            else 
+            {
                 session.setAttribute("uid", user.getUid());
                 session.setAttribute("name", user.getName());
                 session.setAttribute("type", user.getType());
                 session.setAttribute("user", user);
                 session.setMaxInactiveInterval(-1);
                 String type = (String) session.getAttribute("type");
-                if(type.equalsIgnoreCase("admin")){
-                response.sendRedirect("adminIndex.jsp");
+                if(type.equalsIgnoreCase("admin"))
+                {
+                    response.sendRedirect("adminIndex.jsp");
                 }
-                else{
-                response.sendRedirect("index.jsp");
-                
+                else
+                {
+                    response.sendRedirect("index.jsp");        
                 }
                 
             }
