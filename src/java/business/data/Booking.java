@@ -5,6 +5,8 @@
  */
 package business.data;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -60,7 +62,14 @@ public class Booking {
     }
 
     public Date getDate() {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        format.format(date);
         return date;
+    }
+    
+    public String getStringDate() {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
     }
 
     public void setDate(Date date) {

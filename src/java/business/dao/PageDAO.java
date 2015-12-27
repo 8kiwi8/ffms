@@ -22,6 +22,7 @@ public class PageDAO {
         pages.add(new Page("Home", "/index.jsp", "user"));
         pages.add(new Page("Courts", "/Courts", "user"));
         pages.add(new Page("My Bookings", "/MyBooking", "user"));
+        pages.add(new Page("Book Now!", "/NewBooking", "user"));
         
         
         

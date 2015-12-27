@@ -42,22 +42,20 @@ public class ProfileEditServlet extends HttpServlet {
             String name = request.getParameter("Name");
             //String username = request.getParameter("email");
             String password = request.getParameter("password");
-            String status = null;
             
             
             UserDAO userDAO = new UserDAO();
-            User USER=null;
-            USER = userDAO.updateUser((int) user.getUid(),name,user.getUsername(),password);
+            User USER= user;
+            USER.setName(name);
+            USER.setPassword(password);
+            USER = userDAO.updateUser((int) user.getUid(),USER);
            
-           
-            
             if(USER!=null){
-
                 session.setAttribute("name", USER.getName());
                 session.setAttribute("type", USER.getType());
                 session.setAttribute("user", USER);
                 session.setMaxInactiveInterval(-1);
-                response.sendRedirect("user/profileEdit.jsp");
+                response.sendRedirect("user/profile.jsp");
 
             }
             else{
