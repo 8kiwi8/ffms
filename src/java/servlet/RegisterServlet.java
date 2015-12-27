@@ -53,7 +53,7 @@ public class RegisterServlet extends HttpServlet {
             if(USER!=null){
             
             
-            session.setAttribute("error", "Username already taken");
+            session.setAttribute("errorRegister", "Username already taken");
             response.sendRedirect("user/register.jsp");
             
             }
