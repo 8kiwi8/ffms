@@ -16,6 +16,7 @@
                     <td width="70%">Description</td>
                     <td>Price</td>
                     <td>Update</td>
+                    <td>Activation</td>
                     <td>Delete</td>
                 </tr>
 
@@ -25,7 +26,15 @@
                         <td>${space.name}</td>
                         <td>${space.description}</td>
                         <td>${space.price}</td>
-                        <td><a href="<c:out value="${pageContext.servletContext.contextPath}"/>/UpdateSpace?sid=${space.sid}" class="btn btn-default" role="button">Update</a></td>
+                        <td><a href="<c:out value="${pageContext.servletContext.contextPath}"/>/UpdateSpace.jsp?sid=${space.sid}" class="btn btn-default" role="button">Update</a></td>
+                        <td>
+                        <c:if test="${space.status == 'inactive'}">
+                            <a href="<c:out value="${pageContext.servletContext.contextPath}"/>/ActivateSpace?sid=${space.sid}" class="btn btn-default" role="button">Activate</a>
+                        </c:if>
+                        <c:if test="${space.status == 'active'}">
+                            <a href="<c:out value="${pageContext.servletContext.contextPath}"/>/DeactivateSpace?sid=${space.sid}" class="btn btn-default" role="button">Deactivate</a>
+                        </c:if>
+                        </td>
                         <td><a href="<c:out value="${pageContext.servletContext.contextPath}"/>/DeleteSpace?sid=${space.sid}" class="btn btn-danger" role="button">Delete</a></td>
                     </tr>
                 </c:forEach>
