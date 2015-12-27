@@ -32,6 +32,8 @@ import javax.servlet.http.HttpSession;
     "/ListBooking.jsp", 
     "/UpdateSpace.jsp",
     "/AddSpaceServlet",
+    "/ActivateSpace",
+    "/DeactivateSpace",
     "/DeleteBooking",
     "/DeleteSpace",
     "/DeleteUser",

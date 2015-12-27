@@ -31,7 +31,7 @@ public class BookingDAO {
     
     public List<Booking> getAllBooking() {
         String query = "SELECT * FROM booking, user, space, time WHERE "
-                + "user.uid=booking.uid AND space.sid = booking.sid AND booking.tid = time.tid";
+                + "user.uid=booking.uid AND space.sid = booking.sid AND booking.tid = time.tid ORDER BY bid DESC";
         ResultSet rs = null;
         List<Booking> bookings = new ArrayList<Booking>();
         try {
@@ -91,7 +91,7 @@ public class BookingDAO {
     
     public List<Booking> getUserBooking(Long uid) {
         String query = "SELECT * FROM booking, user, space, time WHERE "
-                + "user.uid=booking.uid AND space.sid = booking.sid AND time.tid=booking.tid AND booking.uid="+uid;
+                + "user.uid=booking.uid AND space.sid = booking.sid AND time.tid=booking.tid AND booking.uid="+uid+" ORDER BY bid DESC";
         System.out.print(query);
         ResultSet rs = null;
         List<Booking> bookings = new ArrayList<Booking>();
@@ -152,7 +152,7 @@ public class BookingDAO {
     
     public List<Booking> getSpaceBooking(Long sid) {
         String query = "SELECT * FROM booking, user, space, time WHERE "
-                + "user.uid=booking.uid AND space.sid = booking.sid AND time.tid=booking.tid AND sid="+sid;
+                + "user.uid=booking.uid AND space.sid = booking.sid AND time.tid=booking.tid AND sid="+sid+" ORDER BY bid DESC";
         ResultSet rs = null;
         List<Booking> bookings = new ArrayList<Booking>();
         try {

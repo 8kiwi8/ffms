@@ -25,6 +25,41 @@ public class SpaceDAO {
     private PreparedStatement ptmt;
     
     public List<Space> getAllSpace() {
+        String query = "SELECT * FROM space";
+        ResultSet rs = null;
+        List<Space> spaces = new ArrayList<Space>();
+        try {
+            connection = JDBCUtil.getConnection();
+            statement = connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+                Space space = new Space();
+                space.setSid(rs.getLong("sid"));
+                space.setName(rs.getString("name"));
+                space.setDescription(rs.getString("description"));
+                space.setPicPath(rs.getString("picPath"));
+                space.setPrice (rs.getDouble ("price"));
+                space.setStatus (rs.getString("status"));
+                spaces.add(space);
+            }
+        } catch (SQLException ex) {
+             while (ex != null) {
+                System.out.println ("SQLState: " + ex.getSQLState ());
+                System.out.println ("Message:  " + ex.getMessage ());
+                System.out.println ("Vendor:   " + ex.getErrorCode ());
+                ex = ex.getNextException();
+                System.out.println ("");
+            }
+            System.out.println("Connection to the database error");
+        } finally {
+            JDBCUtil.close(rs);
+            JDBCUtil.close(statement);
+            JDBCUtil.close(connection);
+        }
+        return spaces;
+    }
+    
+     public List<Space> getActiveSpace() {
         String query = "SELECT * FROM space WHERE status='active'";
         ResultSet rs = null;
         List<Space> spaces = new ArrayList<Space>();

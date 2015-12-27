@@ -15,7 +15,6 @@
                                 <td>Booked Space</td>
                                 <td>Booker</td>
                                 <td>Price </td>
-                                <td>Remark</td>
                                 <td>Status</td>
                                 <td> Confirmation</td>
                                 
@@ -28,10 +27,13 @@
                                 <td>${booking.space.name}</td>
                                 <td>${booking.user.name}</td>
                                 <td>${booking.price}</td>
-                                <td>${booking.remark}</td>
                                 <td>${booking.status}</td>
-                    		<td><a href="<c:out value="${pageContext.servletContext.contextPath}"/>/ApproveBooking?bid=${booking.bid}" class="btn btn-info" role="button">Approve</a>
-                                    <a href="<c:out value="${pageContext.servletContext.contextPath}"/>/RejectBooking?bid=${booking.bid}" class="btn btn-danger" role="button">Reject</a></td>
+                    		<td>
+                                    <c:if test="${booking.status == 'Pending'}">
+                                        <a href="<c:out value="${pageContext.servletContext.contextPath}"/>/ApproveBooking?bid=${booking.bid}" class="btn btn-info" role="button">Approve</a>
+                                        <a href="<c:out value="${pageContext.servletContext.contextPath}"/>/RejectBooking?bid=${booking.bid}" class="btn btn-danger" role="button">Reject</a>
+                                    </c:if>
+                                </td>
                                 
                     	</tr>
                         </c:forEach>

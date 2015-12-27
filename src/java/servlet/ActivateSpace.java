@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dispatcher;
+package servlet;
 
 import business.dao.SpaceDAO;
+import business.data.Space;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kingw
  */
-@WebServlet(name = "Courts.jsp", urlPatterns = {"/Courts.jsp"})
-public class Courts extends HttpServlet {
+@WebServlet(name = "ActivateSpace", urlPatterns = {"/ActivateSpace"})
+public class ActivateSpace extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,14 +35,13 @@ public class Courts extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            //State which url should the data post to
-            RequestDispatcher rd = request.getRequestDispatcher("/courts.jsp");
-            //DAO is used to fetch data from database
+            /* TODO output your page here. You may use following sample code. */
             SpaceDAO spaceDAO = new SpaceDAO();
-            //Put the list of data as an attribute to be posted
-            request.setAttribute("spaces", spaceDAO.getActiveSpace());
-            //Post everything to the web page
-            rd.forward(request, response);
+            long sid = Long.parseLong(request.getParameter("sid"));
+            Space space = spaceDAO.getSpace(sid);
+            space.setStatus("active");
+            spaceDAO.updateSpace(sid, space);
+            response.sendRedirect(request.getContextPath() + "/ListSpace.jsp");
         }
     }
 

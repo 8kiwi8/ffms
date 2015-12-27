@@ -6,7 +6,9 @@
 package servlet;
 
 import business.dao.BookingDAO;
+import business.dao.SpaceDAO;
 import business.data.Booking;
+import business.data.Space;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -57,7 +59,9 @@ public class NewBookingServlet extends HttpServlet {
             booking.setSid(Long.parseLong(parts[0]));
             booking.setTid(Integer.parseInt(parts[1]));
             booking.setRemark("Test");
-            booking.setPrice(10.11);
+            SpaceDAO spaceDAO = new SpaceDAO();
+            Space space = spaceDAO.getSpace(Long.parseLong(parts[0]));
+            booking.setPrice(space.getPrice());
             booking.setUid((long) request.getSession().getAttribute("uid"));
             booking.setStart(new Date());
             booking.setEnd(new Date());

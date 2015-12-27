@@ -39,7 +39,7 @@ public class ApproveBooking extends HttpServlet {
             long bid = Long.parseLong(request.getParameter("bid"));
             BookingDAO bookingDAO = new BookingDAO();
             Booking b = bookingDAO.getBooking(bid);
-            b.setStatus("Accepted");
+            b.setStatus("Approved");
             bookingDAO.updateBooking(bid, b);
             response.sendRedirect(request.getHeader("Referer"));
         }
