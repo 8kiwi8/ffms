@@ -50,7 +50,7 @@ public class NewBooking extends HttpServlet {
             TimeDAO timeDAO = new TimeDAO();
             BookingDAO bookingDAO = new BookingDAO();
             //Put the list of data as an attribute to be posted
-            request.setAttribute("spaces", spaceDAO.getAllSpace());
+            request.setAttribute("spaces", spaceDAO.getActiveSpace());
             request.setAttribute("times", timeDAO.getAllTime());
             
             Date date;
