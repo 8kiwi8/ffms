@@ -16,7 +16,7 @@
 	                    <form data-toggle="validator" role="form" method="post" action="<c:out value="${pageContext.servletContext.contextPath}"/>/RegisterServlet">
 				 <div class="form-group">
 		                    <label for="inputName" class="control-label">Name</label>
-                                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" required>
+                                    <input type="text" class="form-control" id="inputName" name="Name" placeholder="Name" required>
 				 </div>
 				 <div class="form-group">
 				    <label for="inputEmail" class="control-label">Email</label>
@@ -30,11 +30,15 @@
                                         <span class="help-block">Minimum of 6 characters</span>
                                     </div>
                                  </div>
+                                <c:if test="${error != null}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Error!</strong> ${error}
+                                    </div>
+                                    
+                                    <c:remove var="error" scope="session"/>
+                                </c:if>
                                 
-                                <div class="alert alert-danger alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <strong>Error!</strong> Start doing some work
-                                </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>

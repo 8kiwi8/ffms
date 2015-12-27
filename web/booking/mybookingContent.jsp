@@ -22,19 +22,20 @@
                     		<td> Confirmation </td>
                     		<td> Delete?</td>
                     	</tr>
+                        <c:forEach items="${bookings}" var="booking">
                     	<tr> 
                     		<!-- take data from database court,user name, booking(data & time) -->
-                     		<td> 16/12/2015 </td>
-                    		<td> 09:00 </td>
-                    		<td> 12:00 </td>
-                    		<td> Peace! </td>
-                    		<td> Court 1 </td>
-                    		<td> RM 55 </td>
+                     		<td>${booking.date}</td>
+                    		<td>${booking.start}</td>
+                    		<td>${booking.end}</td>
+                    		<td>${booking.user.name}</td>
+                    		<td>${booking.space.name}</td>
+                    		<td>${booking.price}</td>
                     		<td> No    </td>
                     		<td> <button type="button" class="btn btn-default"> Delete </button> </td>
                     	</tr>
+                        </c:forEach>
 
-    
                     </table>
 			    </div>
 				
