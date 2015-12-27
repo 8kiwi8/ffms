@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Aydil
  */
-@WebServlet(name = "NavDispatcher", urlPatterns = {"/NavDispatcher"})
+@WebServlet(name = "NavDispatcher.jsp", urlPatterns = {"/NavDispatcher.jsp"})
 public class NavDispatcher extends HttpServlet {
 
     /**

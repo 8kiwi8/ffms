@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kingw
  */
-@WebServlet(name = "MyBooking", urlPatterns = {"/MyBooking"})
+@WebServlet(name = "MyBooking.jsp", urlPatterns = {"/MyBooking.jsp"})
 public class MyBooking extends HttpServlet {
 
     /**

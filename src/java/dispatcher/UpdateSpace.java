@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kingw
  */
-@WebServlet(name = "UpdateSpace", urlPatterns = {"/UpdateSpace"})
+@WebServlet(name = "UpdateSpace.jsp", urlPatterns = {"/UpdateSpace.jsp"})
 public class UpdateSpace extends HttpServlet {
 
     /**

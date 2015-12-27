@@ -16,10 +16,13 @@
     String name = (String) session.getAttribute("name");
     String userLevel = (String) session.getAttribute("type");
     
+    String[] urls = {
+        request.getContextPath() + "/index.jsp",
+        request.getContextPath() + "/"
+    };
     
     if (userLevel != null)
         isLoggedIn = true;
-   
 %>
 
 <!doctype html>
@@ -95,6 +98,13 @@
                     </ul>
                 </div>
             </nav>
+            <c:if test="${permissionError != null}">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Error!</strong> ${permissionError}
+                </div>
+                <c:remove var="permissionError" scope="session"/>
+            </c:if>
             
             <!-- START OF LOGIN MODAL POPUP -->
             <div class="modal fade" id="mymodal" role="dialog">

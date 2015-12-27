@@ -20,18 +20,18 @@ public class PageDAO {
         pages = new ArrayList<Page>();
         //nav user
         pages.add(new Page("Home", "/index.jsp", "user"));
-        pages.add(new Page("Courts", "/Courts", "user"));
-        pages.add(new Page("My Bookings", "/MyBooking", "user"));
-        pages.add(new Page("Book Now!", "/NewBooking", "user"));
+        pages.add(new Page("Courts", "/Courts.jsp", "user"));
+        pages.add(new Page("My Bookings", "/MyBooking.jsp", "user"));
+        pages.add(new Page("Book Now!", "/NewBooking.jsp", "user"));
         
         
         
         //nav admin
         pages.add(new Page("Home", "/adminIndex.jsp", "admin"));
-        pages.add(new Page("Space", "/ListSpace", "admin"));
-        pages.add(new Page("Users", "/ListUser", "admin"));
-        pages.add(new Page("Bookings", "/ListBooking", "admin"));
-        pages.add(new Page("Report", "/Report", "admin"));
+        pages.add(new Page("Space", "/ListSpace.jsp", "admin"));
+        pages.add(new Page("Users", "/ListUser.jsp", "admin"));
+        pages.add(new Page("Bookings", "/ListBooking.jsp", "admin"));
+        pages.add(new Page("Report", "/Report.jsp", "admin"));
         
         
         
