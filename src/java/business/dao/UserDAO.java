@@ -162,12 +162,11 @@ public class UserDAO {
         }
     }
     
-        public User updateUser(int uid,String name,String username,String password) 
+        public User updateUser(int uid, User user) 
         {
         String query = "SELECT * FROM user WHERE uid=" + uid;
         String query1 = "UPDATE user SET name=?, username=?, password=?, type=?, status=? WHERE uid=" + uid;
         ResultSet rs = null;
-       
         try 
         {
             connection = JDBCUtil.getConnection();
@@ -177,11 +176,11 @@ public class UserDAO {
         if (rs.next()) 
            {
                 ptmt = connection.prepareStatement(query1);
-                ptmt.setString(1, name);
-                ptmt.setString(2, username);
-                ptmt.setString(3, password);
-                ptmt.setString(4, "user");
-                ptmt.setString(5, "active");
+                ptmt.setString(1, user.getName());
+                ptmt.setString(2, user.getUsername());
+                ptmt.setString(3, user.getPassword());
+                ptmt.setString(4, user.getType());
+                ptmt.setString(5, user.getStatus());
                 ptmt.executeUpdate();
           }
         } 

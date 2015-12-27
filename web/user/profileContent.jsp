@@ -36,40 +36,4 @@
                     <a class="btn btn-default" href="profileEdit.jsp" role="button">Edit</a>
 			    </div>
 			    <div class="col-xs-3"></div>
-            </div>
-<div class="row">
-            	<div class="col-xs-3"></div>
-                <div class="table-responsive col-xs-6" >
-                	<h5> User Transaction History <h5>
-                    <table class="table">
-                    	<tr> 
-                    		<td>Booking Date</td>
-                                <td>Booked Space</td>
-                                
-                                <td>Start Time</td>
-                                <td>End Time</td>
-                                <td>Price </td>
-                                <td>Remark</td>
-                                <td> Confirmation</td>
-                    		
-                    	</tr>
-                    	<c:forEach items="${bookings}" var="booking">
-                    	<tr> 
-                    		
-                                <td>${booking.date}</td>
-                                <td>${booking.space.name}</td>
-                               
-                                <td>${booking.start}</td>
-                                <td>${booking.end}</td>
-                                <td>${booking.price}</td>
-                                <td>${booking.remark}</td>
-                                <td>${booking.confirmation}</td>
-                    		
-                    	</tr>
-                        </c:forEach>
-
-    
-                    </table>
-			    </div>
-			    <div class="col-xs-3"></div>
-            </div>			 
+            </div>		 

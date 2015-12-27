@@ -24,14 +24,14 @@
                         <c:forEach items="${bookings}" var="booking">
                     	<tr> 
                     		<td>${booking.bid}</td>
-                                <td>${booking.date}</td>
+                                <td>${booking.stringDate}</td>
                                 <td>${booking.space.name}</td>
                                 <td>${booking.user.name}</td>
                                 <td>${booking.price}</td>
                                 <td>${booking.remark}</td>
-                                <td>inactive</td>
-                    		<td> <button type="button" class="btn btn-primary btn-sm">Approve</button>
-                                    <button type="button" class="btn btn-primary btn-sm">Reject</button></td>
+                                <td>${booking.status}</td>
+                    		<td><a href="<c:out value="${pageContext.servletContext.contextPath}"/>/ApproveBooking?bid=${booking.bid}" class="btn btn-info" role="button">Approve</a>
+                                    <a href="<c:out value="${pageContext.servletContext.contextPath}"/>/RejectBooking?bid=${booking.bid}" class="btn btn-danger" role="button">Reject</a></td>
                                 
                     	</tr>
                         </c:forEach>

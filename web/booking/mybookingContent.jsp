@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <div class="row">
             	<div class="col-xs-2"></div>
@@ -14,25 +15,21 @@
                     <table class="table table-bordered">
                     	<tr> 
                     		<td> Date </td>
-                    		<td> Start </td>
-                                <td> End   </td>
                     		<td> User </td>
                     		<td> Court </td>
                     		<td> Price </td>
-                    		<td> Confirmation </td>
+                    		<td> Status </td>
                     		<td> Delete?</td>
                     	</tr>
                         <c:forEach items="${bookings}" var="booking">
                     	<tr> 
                     		<!-- take data from database court,user name, booking(data & time) -->
-                     		<td>${booking.date}</td>
-                    		<td>${booking.start}</td>
-                    		<td>${booking.end}</td>
+                     		<td>${booking.stringDate}</td>
                     		<td>${booking.user.name}</td>
                     		<td>${booking.space.name}</td>
                     		<td>${booking.price}</td>
-                    		<td> No    </td>
-                    		<td> <button type="button" class="btn btn-default"> Delete </button> </td>
+                    		<td>${booking.status}</td>
+                    		<td><a href="<c:out value="${pageContext.servletContext.contextPath}"/>/DeleteBooking?bid=${booking.bid}" class="btn btn-danger" role="button">Delete</a></td>
                     	</tr>
                         </c:forEach>
 

@@ -33,8 +33,9 @@
 
     <div class="col-xs-12 col-sm-9 col-lg-10">
         <c:if test="${message != null}">
-            <div class="alert alert-info alert-dismissible" role="alert">
+            <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="glyphicon glyphicon-ok-circle" aria-hidden="true" style="margin-right: 7px; vertical-align: -2px;"></span>
                 <strong>${message}</strong>
                 <c:remove var="message"/>
             </div>
@@ -104,16 +105,6 @@
         <div class="form-group">
             <input class="btn btn-lg btn-block btn-success" type="submit" value="Submit" form="selectedTimeSlot">
         </div>
-        
-                
-        <c:if test="${message != null}">
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <span class="glyphicon glyphicon-ok-circle" aria-hidden="true" style="margin-right: 7px; vertical-align: -2px;"></span>
-                <strong>${message}</strong>
-                <c:remove var="message"/>
-            </div>
-        </c:if>
     </div>
     <c:choose>
         <c:when test="${not empty param.date}">
